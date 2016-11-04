@@ -1,0 +1,44 @@
+{
+	"binary_file_patterns":
+	[
+		"*.dds",
+		"*.eot",
+		"*.gif",
+		"*.ico",
+		"*.jar",
+		"*.jpeg",
+		"*.jpg",
+		"*.njsproj",
+		"*.pdf",
+		"*.png",
+		"*.swf",
+		"*.tga",
+		"*.ttf",
+		"*.zip",
+		".ntvs_analysis.dat",
+		"node_modules/**",
+		"public/js/libs/**"
+	],
+	"color_scheme": "Packages/User/SublimeLinter/iPlastic (SL).tmTheme",
+	"font_face": "DejaVu Sans Mono",
+	"font_size": 9,
+	"ignored_packages":
+	[
+		"DocBlockr",
+		"JavaScript Completions",
+		"Mako",
+		"SublimeGit",
+		"SublimeLinter-jshint",
+		"Vintage"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"overlay_scroll_bars": "enabled",
+	"reveal-on-activate": false,
+	"theme": "Soda Light 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true
+}
