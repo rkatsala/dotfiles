@@ -25,7 +25,9 @@
 	"ignored_packages":
 	[
 		"DocBlockr",
+		"GitGutter",
 		"JavaScript Completions",
+		"LiveReload",
 		"Mako",
 		"SublimeGit",
 		"SublimeLinter-jshint",

@@ -13,12 +13,16 @@
 		{
 			"eslint":
 			{
-				"@disable": false,
+				"@disable": true,
 				"args":
 				[
+					"--rulesdir",
+					"/home/roma/.node_modules"
 				],
 				"excludes":
 				[
+					"**/node_modules/**",
+					"**/libs/**"
 				]
 			},
 			"htmlhint":

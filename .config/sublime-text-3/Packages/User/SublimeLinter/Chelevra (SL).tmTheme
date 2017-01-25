@@ -12,7 +12,7 @@
 				<key>activeGuide</key>
 				<string>#F5F1F210</string>
 				<key>background</key>
-				<string>#263238</string>
+				<string>#2B303B</string>
 				<key>bracketsForeground</key>
 				<string>#F8F8F2A5</string>
 				<key>bracketsOptions</key>
@@ -44,7 +44,7 @@
 			<key>name</key>
 			<string>Strings</string>
 			<key>scope</key>
-			<string>string.quoted</string>
+			<string>string</string>
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
@@ -86,7 +86,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#FFD75F</string>
+				<string>#FFD74A</string>
 			</dict>
 		</dict>
 		
@@ -98,7 +98,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#9DBAD2</string>
+				<string>#9dbad2</string>
 			</dict>
 		</dict>
 		
@@ -394,13 +394,13 @@
 		</dict>
 	<dict>
             <key>name</key>
-            <string>SublimeLinter Error</string>
+            <string>SublimeLinter Warning</string>
             <key>scope</key>
-            <string>sublimelinter.mark.error</string>
+            <string>sublimelinter.mark.warning</string>
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#D02000</string>
+                <string>#DDB700</string>
             </dict>
         </dict><dict>
             <key>name</key>
@@ -414,13 +414,13 @@
             </dict>
         </dict><dict>
             <key>name</key>
-            <string>SublimeLinter Warning</string>
+            <string>SublimeLinter Error</string>
             <key>scope</key>
-            <string>sublimelinter.mark.warning</string>
+            <string>sublimelinter.mark.error</string>
             <key>settings</key>
             <dict>
                 <key>foreground</key>
-                <string>#DDB700</string>
+                <string>#D02000</string>
             </dict>
         </dict></array>
 	<key>uuid</key>
