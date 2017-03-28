@@ -1,0 +1,13 @@
+[playlist]
+NumberOfEntries=11
+File1=http://streaming.radionomy.com/buddha-bar
+File2=http://cast.loungefm.com.ua/chillout128
+File3=http://cast.loungefm.com.ua:8000/loungefm
+File4=http://cast.loungefm.com.ua/acoustic128
+File5=http://cast.loungefm.com.ua/terrace128
+File6=http://online-kissfm.tavrmedia.ua/KissFM
+File7=http://online-kissfm.tavrmedia.ua/KissFM_deep
+File8=http://online-kissfm.tavrmedia.ua/KissFM_digital
+File9=http://online-kissfm.tavrmedia.ua/KissFM_dnb
+File10=http://online-kissfm.tavrmedia.ua/KissFM_trance
+File11=http://195.234.148.51:8000/

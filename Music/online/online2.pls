@@ -1,0 +1,16 @@
+[playlist]
+NumberOfEntries=14
+File1=http://195.234.148.51:8000/
+File2=http://cast.loungefm.com.ua/chillout128
+File3=http://cast.loungefm.com.ua:8000/loungefm
+File4=http://cast.loungefm.com.ua/acoustic128
+File5=http://cast.loungefm.com.ua/terrace128
+File6=http://online-kissfm.tavrmedia.ua/KissFM
+File7=http://online-kissfm.tavrmedia.ua/KissFM_deep
+File8=http://online-kissfm.tavrmedia.ua/KissFM_digital
+File9=http://88.198.48.36:8000/chill
+File10=http://88.198.48.36:8000/prog
+File11=http://88.198.48.36:8000/schizoid
+File12=http://air.chillout.zone:8060/radio
+File13=http://air.chillout.zone:8000/radio
+File14=http://air.chillout.zone:8020/radio

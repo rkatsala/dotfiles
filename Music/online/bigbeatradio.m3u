@@ -1,0 +1,7 @@
+#EXTM3U
+#EXTINF:-1,Bigbeatradio.com Main Server (192 kbps SHOUTcast)
+http://159.8.16.16:8036/
+#EXTINF:-1,Bigbeatradio.com US Server (128 kbps MP3)
+http://bigbeatradio.com:8100/hi-fi.mp3
+#EXTINF:-1,Bigbeatradio.com US Server (64 kbps MP3)
+http://bigbeatradio.com:8100/lo-fi
