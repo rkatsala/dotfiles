@@ -15,9 +15,7 @@
 		"*.tga",
 		"*.ttf",
 		"*.zip",
-		".ntvs_analysis.dat",
-		"node_modules/**",
-		"public/js/libs/**"
+		".ntvs_analysis.dat"
 	],
 	"color_scheme": "Packages/User/SublimeLinter/iPlastic (SL).tmTheme",
 	"font_face": "DejaVu Sans Mono",
@@ -25,7 +23,6 @@
 	"ignored_packages":
 	[
 		"DocBlockr",
-		"GitGutter",
 		"JavaScript Completions",
 		"LiveReload",
 		"Mako",

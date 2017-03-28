@@ -1,10 +1,13 @@
 [
     { "keys": ["alt+shift+up"], "command": "select_lines", "args": {"forward": false} },
     { "keys": ["alt+shift+down"], "command": "select_lines", "args": {"forward": true} },
-    { "keys": ["super+f3"], "command": "find_all_under" },
+    { "keys": ["ctrl+f3"], "command": "find_all_under" },
 
     { "keys": ["ctrl+up"], "command": "scroll_lines", "args": {"amount": 1.0 } },
     { "keys": ["ctrl+down"], "command": "scroll_lines", "args": {"amount": -1.0 } },
+
+    { "keys": ["ctrl+s"], "command": "save" },
+    { "keys": ["ctrl+alt+s"], "command": "save_all" },
     // {
     //     "keys": ["tab"], "command": "expand_abbreviation_by_tab", "context": [
     //         {
