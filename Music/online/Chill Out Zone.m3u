@@ -1,0 +1,4 @@
+#EXTM3U
+#EXT-X-VERSION:2
+#EXTINF:-1, Chill Out Zone
+http://air.chillout.zone:8000/radio
