@@ -17,7 +17,9 @@
 		"*.zip",
 		".ntvs_analysis.dat"
 	],
-	"color_scheme": "Packages/User/SublimeLinter/iPlastic (SL).tmTheme",
+	"color_scheme": "Packages/User/SublimeLinter/Agila Oceanic Next (SL).tmTheme",
+	"flatland_sidebar_tree_medium": true,
+	"flatland_square_tabs": true,
 	"font_face": "DejaVu Sans Mono",
 	"font_size": 9,
 	"ignored_packages":
@@ -37,7 +39,7 @@
 	],
 	"overlay_scroll_bars": "enabled",
 	"reveal-on-activate": false,
-	"theme": "Soda Light 3.sublime-theme",
+	"theme": "Flatland Dark.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true
 }
