@@ -1,0 +1,20 @@
+[alias]
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=local
+[user]
+	name = Roman Katsala
+	email = rkatsala@gmail.com
+[merge]
+	tool = meld
+[diff]
+	tool = meld
+[difftool]
+	prompt = false
+[credential]
+	helper = cache --timeout=36000
+[push]
+	default = simple
+[cola]
+	tabwidth = 4
+[gui]
+	editor = subl
+	historybrowser = gitk
