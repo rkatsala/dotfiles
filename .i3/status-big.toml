@@ -1,0 +1,98 @@
+theme = "gruvbox-dark"
+icons = "awesome"
+
+#[[block]]
+#block = "weather"
+##format = "{weather} ({location}) {temp}°"
+#format = "{weather} {temp}°"
+#service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
+
+#[[block]]
+#block = "music"
+#buttons = ["play", "next"]
+
+[[block]]
+block = "custom"
+command = "mocp -Q '%state: %title'"
+on_click = "mocp -G"
+interval = 1
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+ssid = true
+bitrate = false
+ip = true
+speed_up = false
+speed_down = false
+graph_up = false
+graph_down = false
+interval = 1
+
+[[block]]
+block = "temperature"
+collapsed = false
+interval = 5
+#format = "{min}° min, {max}° max, {average}° avg"
+format = "{average}°"
+good = 20
+idle = 60
+info = 75
+warning = 87 # critical 105
+
+[[block]]
+block = "cpu"
+interval = 1
+frequency = true
+
+#[[block]]
+#block = "load"
+#interval = 1
+#format = "{1m}"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mug}GiB"
+format_swap = "{SUg}GiB"
+
+[[block]]
+block = "disk_space"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 10.0
+alert = 5.0
+
+[[block]]
+block = "disk_space"
+path = "/home"
+alias = "~"
+info_type = "available"
+unit = "GB"
+interval = 20
+warning = 20.0
+alert = 10.0
+
+#[[block]]
+#block = "xrandr"
+#icons = true
+#resolution = true
+#interval = 2
+
+[[block]]
+block = "sound"
+driver = "pulseaudio"
+step_width = 1
+
+[[block]]
+block = "time"
+interval = 5
+#format = "%a %d/%m %R"
+format = "%F %R"
+
+[[block]]
+block = "uptime"
+

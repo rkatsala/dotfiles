@@ -1,0 +1,115 @@
+theme = "gruvbox-dark"
+icons = "awesome"
+
+#[[block]]
+#block = "focused_window"
+#max_width = 21
+
+#[[block]]
+#block = "toggle"
+#text = "CapsLock"
+#command_state = "xset -q | grep 'Caps Lock:   on'"
+#command_on = "~/.screenlayout/4kmon_default.sh"
+#command_off = "~/.screenlayout/builtin.sh"
+#interval = 1
+
+#[[block]]
+#block = "speedtest"
+#bytes = true
+#interval = 1800
+
+#[[block]]
+#block = "weather"
+#format = "{weather} {temp}°" #"{weather} ({location}) {temp}°"
+#service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
+
+[[block]]
+block = "net"
+device = "wlp3s0"
+ssid = true
+bitrate = false
+ip = true
+speed_up = false
+speed_down = false
+graph_up = false
+graph_down = false
+interval = 1
+
+[[block]]
+block = "cpu"
+interval = 1
+frequency = false
+
+#[[block]]
+#block = "load"
+#interval = 1
+#format = "{1m}"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mug}GiB"
+format_swap = "{SUg}GiB"
+
+#[[block]]
+#block = "disk_space"
+#path = "/"
+#alias = "/"
+#info_type = "available"
+#unit = "GB"
+#interval = 20
+#warning = 10.0
+#alert = 5.0
+
+#[[block]]
+#block = "disk_space"
+#path = "/home"
+#alias = "~"
+#info_type = "available"
+#unit = "GB"
+#interval = 20
+#warning = 20.0
+#alert = 10.0
+
+[[block]]
+block = "backlight"
+#device = "intel_backlight"
+device = "acpi_video0"
+
+#[[block]]
+#block = "xrandr"
+#icons = true
+#resolution = true
+#interval = 2
+
+[[block]]
+block = "sound"
+driver = "pulseaudio"
+step_width = 1
+on_click = "pavucontrol"
+
+[[block]]
+block = "battery"
+interval = 10
+#format = "{percentage}% {time}"
+format = "{percentage}%"
+
+[[block]]
+block = "time"
+interval = 5
+#format = "%a %d/%m %R"
+format = "%d %b %R"
+on_click = "terminal -e sncli"
+
+[[block]]
+block = "maildir"
+interval = 5
+inboxes = ["/home/roma/.mail/rkatsala/INBOX", "/home/roma/.mail/namtab2k/INBOX", "/home/roma/.mail/petterson/INBOX", "/home/roma/.mail/crunch/INBOX"]
+threshold_warning = 1
+threshold_critical = 10
+
+#[[block]]
+#block = "custom"
+#cycle = ["echo Mail"]
+#on_click = "terminal -e neomutt"
+##interval = 1
