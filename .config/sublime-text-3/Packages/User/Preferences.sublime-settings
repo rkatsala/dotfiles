@@ -1,0 +1,53 @@
+{
+	"binary_file_patterns":
+	[
+		"*.dds",
+		"*.eot",
+		"*.gif",
+		"*.ico",
+		"*.jar",
+		"*.jpeg",
+		"*.jpg",
+		"*.njsproj",
+		"*.pdf",
+		"*.png",
+		"*.swf",
+		"*.tga",
+		"*.ttf",
+		"*.zip",
+		".ntvs_analysis.dat",
+		"node_modules/**"
+	],
+	"color_scheme": "Packages/gruvbox/gruvbox (Dark) (Medium) NDC.tmTheme",
+	"flatland_sidebar_tree_medium": true,
+	"flatland_square_tabs": true,
+	"font_face": "DejaVu Sans Mono",
+	"font_size": 9,
+	"ignored_packages":
+	[
+		"DocBlockr",
+		"JavaScript Completions",
+		"LiveReload",
+		"Mako",
+		"Nodejs",
+		"Six",
+		"SublimeGit",
+		"SublimeLinter-contrib-semistandard",
+		"SublimeLinter-contrib-standard",
+		"SublimeLinter-eslint",
+		"SublimeLinter-jshint",
+		"Vintage",
+		"Vintageous"
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"overlay_scroll_bars": "enabled",
+	"reveal-on-activate": false,
+	"theme": "SoDaReloaded Dark.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"vintageous_use_ctrl_keys": true
+}
