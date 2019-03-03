@@ -1,0 +1,83 @@
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+menuentry "Manjaro XFCE 16.10.3 ISO"  {
+    set isofile="/iso/manjaro-xfce-16.10.3-stable-x86_64.iso"
+    set mlabel="MJRO16103"
+    set archi="x86_64"
+    set dri="nonfree"
+    search --no-floppy -f --set=root $isofile
+    probe -u $root --set=partiuuid
+    loopback loop $isofile
+    linux  (loop)/manjaro/boot/$archi/manjaro  img_dev=UUID=$partiuuid  img_loop=$isofile misobasedir=manjaro misolabel=$mlabel nouveau.modeset=1 i915.modeset=1 radeon.modeset=1 logo.nologo overlay=$dri $dri=yes
+    initrd  (loop)/manjaro/boot/$archi/manjaro.img
+    initrd  (loop)/manjaro/boot/intel_ucode.img (loop)/manjaro/boot/$archi/manjaro.img
+}
+menuentry "Manjaro JWM 16.06.1 ISO"  {
+    set isofile="/iso/manjaro-jwm-community-16.06.1-x86_64-19616.iso"
+    set mlabel="MJRO1606"
+    set archi="x86_64"
+    set dri="nonfree"
+    search --no-floppy -f --set=root $isofile
+    probe -u $root --set=partiuuid
+    loopback loop $isofile
+    linux  (loop)/manjaro/boot/$archi/manjaro  img_dev=UUID=$partiuuid  img_loop=$isofile misobasedir=manjaro misolabel=$mlabel nouveau.modeset=1 i915.modeset=1 radeon.modeset=1 logo.nologo overlay=$dri $dri=yes
+    initrd  (loop)/manjaro/boot/$archi/manjaro.img
+    initrd  (loop)/manjaro/boot/intel_ucode.img (loop)/manjaro/boot/$archi/manjaro.img
+}
+menuentry "Manjaro deepin 16.10.3 ISO"  {
+    set isofile="/iso/manjaro-deepin-16.10.3-stable-x86_64.iso"
+    set mlabel="MJRO16103"
+    set archi="x86_64"
+    set dri="nonfree"
+    search --no-floppy -f --set=root $isofile
+    probe -u $root --set=partiuuid
+    loopback loop $isofile
+    linux  (loop)/manjaro/boot/$archi/manjaro  img_dev=UUID=$partiuuid  img_loop=$isofile misobasedir=manjaro misolabel=$mlabel nouveau.modeset=1 i915.modeset=1 radeon.modeset=1 logo.nologo overlay=$dri $dri=yes
+    initrd  (loop)/manjaro/boot/$archi/manjaro.img
+    initrd  (loop)/manjaro/boot/intel_ucode.img (loop)/manjaro/boot/$archi/manjaro.img
+}
+menuentry "Manjaro i3 16.10.3 ISO"  {
+    set isofile="/iso/manjaro-i3-16.10.3-stable-x86_64.iso"
+    set mlabel="MJRO16103"
+    set archi="x86_64"
+    set dri="nonfree"
+    search --no-floppy -f --set=root $isofile
+    probe -u $root --set=partiuuid
+    loopback loop $isofile
+    linux  (loop)/manjaro/boot/$archi/manjaro  img_dev=UUID=$partiuuid  img_loop=$isofile misobasedir=manjaro misolabel=$mlabel nouveau.modeset=1 i915.modeset=1 radeon.modeset=1 logo.nologo overlay=$dri $dri=yes
+    initrd  (loop)/manjaro/boot/$archi/manjaro.img
+    initrd  (loop)/manjaro/boot/intel_ucode.img (loop)/manjaro/boot/$archi/manjaro.img
+}
+menuentry "Manjaro XFCE 16.10.3 ISO (another boot method)" {
+  set isofile="/iso/manjaro-xfce-16.10.3-stable-x86_64.iso"
+  loopback loop (hd0,5)$isofile
+  linux (loop)/manjaro/boot/x86_64/manjaroiso img_dev=/dev/**** img_loop=$isofile misobasedir=manjaro misolabel=MJRO_086 nouveau.modeset=0 i915.modeset=1 radeon.modeset=0
+  initrd (loop)/manjaro/boot/x86_64/manjaro.img
+}
+menuentry "Xubuntu 16.04.1 ISO" {
+    set isofile="/iso/xubuntu-16.04.1-desktop-amd64.iso"
+    search --no-floppy -f --set=root $isofile
+    probe -u $root --set=partiuuid
+    loopback loop $isofile
+    linux (loop)/casper/vmlinuz.efi boot=casper iso-scan/filename=${isofile} quiet splash
+    initrd (loop)/casper/initrd.lz
+}
+menuentry "Ubuntu MATE 16.04.1 ISO" {
+    set isofile="/iso/ubuntu-mate-16.04.1-desktop-amd64.iso"
+    search --no-floppy -f --set=root $isofile
+    probe -u $root --set=partiuuid
+    loopback loop $isofile
+    linux (loop)/casper/vmlinuz.efi boot=casper iso-scan/filename=${isofile} quiet splash
+    initrd (loop)/casper/initrd.lz
+}
+menuentry "Lxle Eclectica 16.04.1 ISO" {
+    set isofile="/iso/lxle-eclectica-16.04.1.iso"
+    search --no-floppy -f --set=root $isofile
+    probe -u $root --set=partiuuid
+    loopback loop $isofile
+    linux (loop)/casper/vmlinuz.efi boot=casper iso-scan/filename=${isofile} quiet splash
+    initrd (loop)/casper/initrd.lz
+}
