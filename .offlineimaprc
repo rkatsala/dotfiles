@@ -1,0 +1,91 @@
+[general]
+accounts = rkatsala, namtab2k, petterson, crunch
+starttls = yes
+ssl = yes
+pythonfile = ~/.config/mutt/credentials/imappwd.py
+
+
+
+[Account rkatsala]
+localrepository = rkatsala-local
+remoterepository = rkatsala-remote
+maxage = 20
+
+[Repository rkatsala-remote]
+auth_mechanisms = LOGIN
+type = Gmail
+remoteuser = rkatsala@gmail.com
+remotepasseval = mailpasswd("rkatsala")
+remoteport = 993
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+maxconnections = 3
+
+[Repository rkatsala-local]
+type = Maildir
+localfolders = ~/.mail/rkatsala
+
+
+[Account namtab2k]
+localrepository = namtab2k-local
+remoterepository = namtab2k-remote
+maxage = 20
+
+[Repository namtab2k-remote]
+auth_mechanisms = LOGIN
+type = Gmail
+remoteuser = namtab2k@gmail.com
+remotepasseval = mailpasswd("namtab2k")
+remoteport = 993
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+maxconnections = 3
+
+[Repository namtab2k-local]
+type = Maildir
+localfolders = ~/.mail/namtab2k
+
+[Account petterson]
+localrepository = petterson-local
+remoterepository = petterson-remote
+maxage = 20
+
+[Repository petterson-remote]
+auth_mechanisms = LOGIN
+#type = IMAP
+type = Gmail
+remotehost = imap.pettersonapps.com
+remoteuser = roman.katsala@pettersonapps.com
+remotepasseval = mailpasswd("petterson")
+remoteport = 143
+ssl = false
+maxconnections = 3
+
+[Repository petterson-local]
+type = Maildir
+localfolders = ~/.mail/petterson
+
+
+
+
+[Account crunch]
+localrepository = crunch-local
+remoterepository = crunch-remote
+maxage = 20
+
+[Repository crunch-remote]
+auth_mechanisms = LOGIN
+type = Gmail
+remoteuser = roman.k@crunch.is
+remotepasseval = mailpasswd("crunch")
+remoteport = 993
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+ssl_version = tls1_2
+maxconnections = 3
+
+[Repository crunch-local]
+type = Maildir
+localfolders = ~/.mail/crunch
