@@ -1,0 +1,8 @@
+[sncli]
+cfg_sn_username = rkatsala@gmail.com
+cfg_sn_password_eval = gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.sncli-pass.gpg
+
+cfg_pager = /home/roma/.local/bin/mdless
+cfg_editor = nvim {fname} +{line}
+cfg_tempdir = /home/roma/.sncli/tmp/
+
