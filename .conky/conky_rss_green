@@ -1,0 +1,23 @@
+conky.config = {
+	alignment = 'bottom_left',
+	background = true,
+	color2 = '2ECC71',
+	cpu_avg_samples = 2,
+	default_color = 'FFFFFF',
+	double_buffer = true,
+	font = 'Bitstream Vera Sans:size=8',
+	gap_x = 25,
+	gap_y = 45,
+	minimum_width = 200,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 2.0,
+	use_xft = true,
+}
+conky.text = [[
+${color2}${rss https://forum.manjaro.org/c/announcements.rss 600 feed_title}
+
+${color}${rss https://forum.manjaro.org/c/announcements.rss 600 item_titles 7 2}
+]]
