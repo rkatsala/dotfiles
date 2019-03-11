@@ -53,7 +53,7 @@ bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -
 
 # Greenclip (https://github.com/erebe/greenclip)
 # Don't forget spawn the daemon `greenclip daemon` first
-bindsym $mod+v exec --no-startup-id "rofi -matching fuzzy -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}' -width 50 -location 2 -bw 2"
+bindsym $mod+p exec --no-startup-id "rofi -matching fuzzy -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}' -width 50 -location 2 -bw 2"
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -111,9 +111,9 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 # bindsym Print exec --no-startup-id i3-scrot
 # bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 # bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Ctrl+p exec --no-startup-id i3-scrot
-bindsym $mod+p --release exec --no-startup-id i3-scrot -w
-bindsym $mod+Shift+p --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Ctrl+F12 exec --no-startup-id i3-scrot
+bindsym $mod+F12 --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+F12 --release exec --no-startup-id i3-scrot -s
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym Mod1+Mod4+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Shift+v exec mupdf /home/roma/learn/vim/vi-vim-cheat-sheet-and-tutorial.pdf
