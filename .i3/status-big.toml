@@ -45,10 +45,10 @@ block = "cpu"
 interval = 1
 frequency = true
 
-#[[block]]
-#block = "load"
-#interval = 1
-#format = "{1m}"
+[[block]]
+block = "load"
+interval = 1
+format = "{1m}" # "{1m} {5m}"
 
 [[block]]
 block = "memory"
@@ -90,8 +90,8 @@ step_width = 1
 [[block]]
 block = "time"
 interval = 5
-#format = "%a %d/%m %R"
-format = "%F %R"
+format = "%a %d/%m %R"
+#format = "%F %R"
 
 [[block]]
 block = "uptime"
