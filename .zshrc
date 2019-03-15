@@ -70,8 +70,8 @@ plugins=(
   #common-aliases
   copydir
   copyfile
-  docker
-  docker-compose
+  #docker
+  #docker-compose
   #jsontools
   node
   npm
@@ -80,8 +80,7 @@ plugins=(
   systemd
   tig
   tmux
-  #tmuxinator
-  vagrant
+  #vagrant
   vi-mode
   vscode
   web-search
