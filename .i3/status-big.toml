@@ -1,5 +1,26 @@
-theme = "gruvbox-dark"
+#theme = "gruvbox-dark"
 icons = "awesome"
+
+# base16-i3status-rust (https://github.com/mystfox/base16-i3status-rust)
+# Pop by Chris Kempson (http://chriskempson.com)
+
+[theme]
+name = "gruvbox-dark"  
+[theme.overrides]
+#separator = "  "       
+#separator_fg = "#202020"
+#separator_bg = "#202020"
+idle_bg = "#202020"
+idle_fg = "#d0d0d0"
+info_bg = "#00aabb"
+info_fg = "#161616"
+good_bg = "#37b349"
+good_fg = "#161616"
+warning_bg = "#f8ca12"
+warning_fg = "#161616"
+critical_bg = "#eb008a"
+critical_fg = "#161616"
+# The rest of the theme settings are left at default.
 
 #[[block]]
 #block = "weather"
@@ -8,18 +29,29 @@ icons = "awesome"
 #service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
 
 #[[block]]
-#block = "music"
-#buttons = ["play", "next"]
+#block = "custom"
+#command = "mocp -Q '%title [%state]'"
+#on_click = "mocp -G"
+#interval = 1
 
 [[block]]
 block = "custom"
-command = "mocp -Q '%state: %title'"
-on_click = "mocp -G"
+#command = "mpc status | sed '/^volume:/d' | tac | sed 's/ #.*//' | tr '\n' ' '"
+command = "mpc | sed '/^volume:/d' | head -1"
+#on_click = "mpc toggle"
 interval = 1
+
+#[[block]]
+#block = "music"
+##player = "mpd"
+#max_width = 32
+#marquee_interval = 2
+#marquee_speed = 0.25
+#buttons = ["prev", "play", "next"]
 
 [[block]]
 block = "net"
-device = "wlp3s0"
+device = "wlp61s0"
 ssid = true
 bitrate = false
 ip = true
@@ -36,9 +68,9 @@ interval = 5
 #format = "{min}° min, {max}° max, {average}° avg"
 format = "{average}°"
 good = 20
-idle = 60
-info = 75
-warning = 87 # critical 105
+idle = 50
+info = 65
+warning = 80 # critical 100
 
 [[block]]
 block = "cpu"
@@ -48,7 +80,7 @@ frequency = true
 [[block]]
 block = "load"
 interval = 1
-format = "{1m}" # "{1m} {5m}"
+format = "{1m} {5m}"
 
 [[block]]
 block = "memory"

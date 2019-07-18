@@ -25,7 +25,7 @@ bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:Ubuntu 10.5
+font xft:URWGothic-Book, FontAwesome 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -39,13 +39,16 @@ bindsym $mod+Shift+q kill
 # start program launcher
 #bindsym $mod+d exec --no-startup-id dmenu_recency
 #bindsym $mod+d exec "rofi -modi combi,drun,window,ssh -show combi -combi-modi window,drun -no-parse-known-hosts -show-icons -width 100 -location 2 -lines 15 -columns 2 -bw 2 -sidebar-mode"
-bindsym $mod+d exec "rofi -matching fuzzy -terminal terminal -modi drun,run,window -show drun -show-icons -width 80 -location 2 -lines 15 -columns 2 -bw 2 -sidebar-mode"
+bindsym $mod+d exec "rofi -matching regex -terminal terminal -modi drun,run,window -show drun -show-icons -width 64 -location 2 -lines 10 -columns 2 -bw 2 -sidebar-mode"
+bindsym $mod+Tab exec "rofi -matching fuzzy -terminal terminal -modi window -show window -show-icons -width 64 -location 2 -lines 12"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
 
 # ssh with rofi
-bindsym $mod+F7 exec "rofi -matching fuzzy -terminal terminal -show ssh -no-parse-known-hosts -width 80 -location 2 -lines 15 -columns 2 -bw 2"
+set $ssh "rofi -matching fuzzy -terminal terminal -show ssh -no-parse-known-hosts -width 64 -location 2 -lines 10 -columns 2 -bw 2"
+bindsym $mod+F7 exec $ssh
+bindsym $mod+XF86Display exec $ssh
 
 # Use qalc to get a simple calculator in rofi
 #bindsym $mod+c exec rofi -show calc -modi "calc:qalc +u8 -nocurrencies" -width 100 -location 1 -lines 5 -bw 2
@@ -53,7 +56,7 @@ bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -
 
 # Greenclip (https://github.com/erebe/greenclip)
 # Don't forget spawn the daemon `greenclip daemon` first
-set $greenclip "rofi -matching fuzzy -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}' -width 50 -location 2 -bw 2"
+set $greenclip "rofi -matching regex -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}' -width 50 -location 2 -bw 2"
 bindsym $mod+p exec --no-startup-id $greenclip
 bindsym $mod+v exec --no-startup-id $greenclip
 
@@ -69,7 +72,7 @@ bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
-bindsym $mod+Shift+m exec $terminal -e 'alsamixer' -c 0
+bindsym $mod+Shift+m exec pulseeffects #$terminal -e 'alsamixer' -c 0
 bindsym Mod1+Mod4+m exec $terminal -e 'pulsemixer'
 
 
@@ -89,11 +92,33 @@ bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute # mute sound
 bindsym XF86AudioMicMute exec --no-startup-id pulseaudio-ctl mute-input # mute mic
 bindsym Ctrl+XF86AudioMute  exec --no-startup-id "pkill pulseeffects; exec pulseeffects --gapplication-service"
 
-# MOC Player Control
-bindsym XF86AudioPlay exec mocp --toggle-pause
-# bindsym XF86AudioStop exec mocp --stop
-bindsym XF86AudioPrev exec mocp --previous
-bindsym XF86AudioNext exec mocp --next
+# # MOC Player Control
+# bindsym $mod+Home exec $terminal -e 'mocp'
+# bindsym $mod+Insert exec mocp --toggle-pause # XF86AudioPlay
+# bindsym $mod+Delete exec mocp --stop # XF86AudioStop
+# bindsym $mod+Prior exec mocp --previous # XF86AudioPrev
+# bindsym $mod+Next exec mocp --next # XF86AudioNext
+
+# MPD Player Control
+bindsym $mod+Delete exec $terminal -e 'ncmpc'
+bindsym $mod+Shift+Delete exec cantata
+bindsym $mod+Insert exec mpc toggle # XF86AudioPlay
+bindsym $mod+Home exec mpc prev # XF86AudioPrev
+bindsym $mod+End exec mpc next # XF86AudioNext
+#bindsym $mod+Home exec mpc play
+#bindsym $mod+End exec mpc stop # XF86AudioStop
+#bindsym $mod+Prior exec mpc prev # XF86AudioPrev
+#bindsym $mod+Next exec mpc next # XF86AudioNext
+
+# MPD Player Control (another host) 
+set $mpd_host 192.168.1.249
+bindsym $mod+Ctrl+Delete exec $terminal -e 'ncmpcpp --host=192.168.1.249'
+bindsym $mod+Ctrl+XF86AudioRaiseVolume exec mpc --host=$mpd_host volume +5
+bindsym $mod+Ctrl+XF86AudioLowerVolume exec mpc --host=$mpd_host volume -5
+bindsym $mod+Ctrl+XF86AudioMute exec mpc --host=$mpd_host volume 0
+bindsym $mod+Ctrl+Insert exec mpc --host=$mpd_host toggle # XF86AudioPlay
+bindsym $mod+Ctrl+Home exec mpc --host=$mpd_host prev # XF86AudioPrev
+bindsym $mod+Ctrl+End exec mpc --host=$mpd_host next # XF86AudioNext
 
 # Screen brightness controls
 # bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
@@ -105,7 +130,6 @@ bindsym $mod+F2 exec chromium
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
-bindsym $mod+F5 exec $terminal -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -116,20 +140,40 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym $mod+Ctrl+F12 exec --no-startup-id i3-scrot
 bindsym $mod+F12 --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+F12 --release exec --no-startup-id i3-scrot -s
+bindsym $mod+Ctrl+XF86Favorites exec --no-startup-id i3-scrot
+bindsym $mod+XF86Favorites --release exec --no-startup-id i3-scrot -w
+bindsym $mod+Shift+XF86Favorites --release exec --no-startup-id i3-scrot -s
 #bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym Mod1+Mod4+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Shift+v exec mupdf /home/roma/learn/vim/vi-vim-cheat-sheet-and-tutorial.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
-bindsym $mod+Ctrl+F8 exec --no-startup-id redshift -o
-bindsym $mod+Ctrl+F9 exec --no-startup-id "redshift -x && killall redshift"
+bindsym $mod+Ctrl+F5 exec --no-startup-id redshift -o
+bindsym $mod+Ctrl+F6 exec --no-startup-id "redshift -x && killall redshift"
 
-bindsym $mod+Ctrl+e exec --no-startup-id terminal -e neomutt
+bindsym $mod+Ctrl+e exec --no-startup-id $terminal -e neomutt
 bindsym Mod1+Mod4+e exec --no-startup-id evolution
 bindsym $mod+Shift+e --release exec "pkill evolution; exec notify-send 'pkill evolution'"
 bindsym Mod1+Mod4+s exec --no-startup-id skypeforlinux
 bindsym Mod1+Mod4+w exec --no-startup-id chromium
 bindsym Mod1+Mod4+c exec --no-startup-id code
 
+# Start Favorites Apps
+# bindsym $mod+F12 mode "$mode_favorites"
+bindsym XF86Favorites mode "$mode_favorites"
+set $mode_favorites Run (w)eb browser, (s)kype, (e)mail, (c)ode, (t)mux, (a)ll
+mode "$mode_favorites" {
+    bindsym w exec --no-startup-id chromium, mode "default"
+    bindsym s exec --no-startup-id skypeforlinux, mode "default"
+    bindsym e exec --no-startup-id evolution, mode "default"
+    bindsym c exec --no-startup-id code, mode "default"
+    # bindsym t exec --no-startup-id terminal -e zsh -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME", mode "default"
+    bindsym t exec --no-startup-id terminal -e zsh -c "tmux", mode "default"
+    bindsym a exec --no-startup-id "chromium & skypeforlinux & evolution & code & terminal -e zsh -c tmux", mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # focus_follows_mouse no
 
@@ -286,26 +330,16 @@ assign [class="Franz"] $ws9
 assign [class="Thunderbird"] $ws10
 assign [class="Evolution"] $ws10
 
-# Automatically putting workspaces on specific screens
-workspace $ws1 output VGA1
-workspace $ws2 output VGA1
-workspace $ws3 output VGA1
-workspace $ws4 output VGA1
-workspace $ws7 output LVDS1
-workspace $ws8 output LVDS1
-workspace $ws9 output LVDS1
-workspace $ws10 output LVDS1
-
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [title="pulsemixer"] floating enable border pixel 1
-for_window [class="Calamares"] floating enable border normal
+for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal
 for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Manjaro-hello"] floating enable
 for_window [class="Manjaro Settings Manager"] floating enable border normal
@@ -330,6 +364,7 @@ for_window [class="Qalculate-gtk"] floating enable border normal
 for_window [class="xpad"] floating enable bordeder pixel 1
 for_window [class="Safeeyes"] floating enable bordeder pixel 1
 for_window [class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"] floating enable bordeder pixel 1
+for_window [class="Evolution-alarm-notify"] floating enable bordeder pixel 1
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -341,11 +376,11 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Set shut down, restart and locking features
 bindsym $mod+F10 mode "$mode_system"
-bindsym XF86Launch1 mode "$mode_system"
+bindsym XF86Tools mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -399,20 +434,25 @@ bindsym $mod+Shift+o    resize grow width 10 px or 10 ppt
 # bindsym $mod+9 exec --no-startup-id blurlock
 bindsym XF86ScreenSaver exec --no-startup-id blurlock
 
-## Manual management of external displays
-# Set the shortcuts and what they do
-set $mode_display Ext Screen (v) VGA ABOVE ON, (r) VGA RIGHT ON, (l) VGA LEFT ON, (h) HDMI RIGHT ON, (x) VGA OFF, (y) HDMI OFF
-mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --above LVDS1, mode "default"
-    bindsym r exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1, mode "default"
-    bindsym l exec --no-startup-id xrandr --output VGA1 --auto --left-of LVDS1, mode "default"
-    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
-    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
-    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
 
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+
+## Manual management of external displays
+set $primary eDP1
+set $secondary HDMI2
+# Set the shortcuts and what they do
+# set $mode_display Ext Screen (v) VGA ABOVE ON, (r) VGA RIGHT ON, (l) VGA LEFT ON, (h) HDMI RIGHT ON, (x) VGA OFF, (y) HDMI OFF
+set $mode_display Ext Screen (a) ABOVE ON, (r) RIGHT ON, (l) LEFT ON, (x) OFF
+mode "$mode_display" {
+   bindsym a exec --no-startup-id xrandr --output $secondary --auto --above $primary, mode "default"
+   bindsym r exec --no-startup-id xrandr --output $secondary --auto --right-of $primary, mode "default"
+   bindsym l exec --no-startup-id xrandr --output $secondary --auto --left-of $primary, mode "default"
+   bindsym x exec --no-startup-id xrandr --output $secondary --auto --off, mode "default"
+#    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1, mode "default"
+#    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+
+   # back to normal: Enter or Escape
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+x mode "$mode_display"
@@ -420,7 +460,17 @@ bindsym XF86Display mode "$mode_display"
 
 # xrandr default
 #exec --no-startup-id xrandr --output VGA1 --auto --left-of LVDS1
-exec --no-startup-id xrandr --output VGA1 --auto --above LVDS1
+exec --no-startup-id xrandr --output $secondary --auto --above $primary
+
+# Automatically putting workspaces on specific screens
+workspace $ws1 output $secondary $primary
+workspace $ws2 output $secondary $primary
+workspace $ws3 output $secondary $primary
+workspace $ws4 output $secondary $primary
+workspace $ws7 output $primary
+workspace $ws8 output $primary
+workspace $ws9 output $primary
+workspace $ws10 output $primary
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -430,20 +480,21 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 #exec --no-startup-id clipit
-#exec --no-startup-id blueman
-#exec_always --no-startup-id "killall sbxkb; exec sbxkb"
+# exec --no-startup-id blueman-applet
+# exec_always --no-startup-id sbxkb
 exec --no-startup-id gxkb
-#exec_always --no-startup-id sbxkb
-#exec --no-startup-id LANG=C start_conky_solarized
-#exec --no-startup-id LANG=en_US.UTF-8 start_conky_green
-exec --no-startup-id LANG=en_US.UTF-8 conky -c /usr/share/conky/conky_green
-exec --no-startup-id LANG=en_US.UTF-8 conky -c /usr/share/conky/conky_rss_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+# exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_green
+exec --no-startup-id LANG=en_US.UTF-8 conky -c ~/.conky/conky_main
+exec --no-startup-id LANG=en_US.UTF-8 conky -c ~/.conky/conky_rss
+exec --no-startup-id xautolock -time 20 -locker blurlock
+exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
+
 #exec --no-startup-id thunderbird
 #exec --no-startup-id franz-bin
 exec --no-startup-id safeeyes
-exec --no-startup-id xrdb -load ~/.Xresources
+#exec --no-startup-id xrdb -load ~/.Xresources
 exec --no-startup-id "killall redshift; exec redshift"
 #exec --no-startup-id mocicon
 #exec --no-startup-id xpad
@@ -451,123 +502,148 @@ exec --no-startup-id pulseeffects --gapplication-service
 exec --no-startup-id greenclip daemon
 exec --no-startup-id unclutter -b
 
+# dpi change
+#exec --no-startup-id xrandr --dpi 192
+#exec_always --no-startup-id xrandr --dpi 157
 
-## Theme colors
+# Color palette used for the terminal ( ~/.Xresources file )
+# Colors are gathered based on the documentation:
+# https://i3wm.org/docs/userguide.html#xresources
+# Change the variable name at the place you want to match the color
+# of your terminal like this:
+# [example]
+# If you want your bar to have the same background color as your
+# terminal background change the line 362 from:
+# background #14191D
+# to:
+# background $term_background
+# Same logic applied to everything else.
+set_from_resource $term_background background
+set_from_resource $term_foreground foreground
+set_from_resource $term_color0     color0
+set_from_resource $term_color1     color1
+set_from_resource $term_color2     color2
+set_from_resource $term_color3     color3
+set_from_resource $term_color4     color4
+set_from_resource $term_color5     color5
+set_from_resource $term_color6     color6
+set_from_resource $term_color7     color7
+set_from_resource $term_color8     color8
+set_from_resource $term_color9     color9
+set_from_resource $term_color10    color10
+set_from_resource $term_color11    color11
+set_from_resource $term_color12    color12
+set_from_resource $term_color13    color13
+set_from_resource $term_color14    color14
+set_from_resource $term_color15    color15
 
-# tango dark
-set $darkblue       #204A87
-set $darkbrown      #8F5902
-set $darkgreen      #4E9A06
-set $darkmagenta    #5C3566
-set $darkred        #A40000
-set $darkyellow     #C4A000
-set $darkorange     #CE5C00
 
-# tango light
-set $lightblue      #729FCF
-set $lightbrown     #E9B96E
-set $lightgreen     #8AE234
-set $lightmagenta   #AD7FA8
-set $lightred       #EF2929
-set $lightyellow    #FCE94F
-set $lightorange    #FCAF3E
+## Base16 Pop
+# Author: Chris Kempson (http://chriskempson.com)
+#
+# You can use these variables anywhere in the i3 configuration file.
 
-# tango normal
-set $blue       #3465A4
-set $brown      #C17D11
-set $green      #73D216
-set $magenta        #75507B
-set $red        #CC0000
-set $yellow         #EDD400
-set $orange     #F57900
-
-# tango mono
-set $black      #555753
-set $grey       #BABDB6
-set $white      #EEEEEC
-set $darkblack      #2E3436
-set $darkgrey       #888A85
-set $darkwhite      #D3D7CF
-
-# $i3-background
-exec_always --no-startup-id xsetroot -solid '#000000'
-
-# <clientclass>         <border>   <backg>    <text> <indicator>
-client.focused          $blue      $blue      $white $lightblue
-client.focused_inactive $black     $black     $grey  $darkgrey
-client.unfocused        $darkblack $darkblack $grey  $darkgrey
-client.urgent           $red       $red       $white $lightred
+set $base00 #161616
+set $base01 #202020
+set $base02 #303030
+set $base03 #505050
+set $base04 #b0b0b0
+set $base05 #d0d0d0
+set $base06 #e0e0e0
+set $base07 #ffffff
+set $base08 #eb008a
+set $base09 #f29333
+set $base0A #f8ca12
+set $base0B #37b349
+set $base0C #00aabb
+set $base0D #0e5a94
+set $base0E #b31e8d
+set $base0F #7a2d00
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	# i3bar_command i3bar -t
-	# status_command i3status
+	# i3bar_command i3bar
+	#status_command i3status
 	#status_command py3status -c ~/.i3/i3status.conf
 	status_command i3status-rs ~/.i3/status.toml
 	#status_command bumblebee-status -m weather nic cpu memory brightness pasink battery datetime notmuch_count -p interval=1 getcrypto.getltc=0 nic.states="^down" nic.format="{ip} {ssid}" traffic.states="^down" memory.usedonly=true brightness.step=7 datetime.locale="en_US.utf8" datetime.format="%d %b %R" time.format="%R" date.format="%d/%m" cpu.left-click="terminal -e htop" memory.left-click="terminal -e htop" root.format="/ {left}" home.path=/home home.format="~ {left}" weather.apikey="6632b2a97378ae82a0dfe3966b4ec684" weather.left-click="terminal -hold -e curl wttr.in/Uzhhorod\?nF" weather.right-click="terminal -hold -e curl wttr.in/Uzhhorod\?F" notmuch_count.left-click="terminal -e neomutt" notmuch_count.right-click="thunderbird" datetime.left-click="terminal -e calcurse" datetime.right-click="terminal -e sncli" shortcut.labels="N" shortcut.cmds="terminal -e sncli" -t gruvbox-powerline
-
-	output LVDS1
-        position bottom
-#        position top
+	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	tray_output primary
 #	tray_output eDP1
-#	tray_output LVDS1
+
+	output $primary
 
 	bindsym button4 nop
 	bindsym button5 nop
-	font xft:Ubuntu Nerd Font 12
+
+	font xft:URWGothic-Book, FontAwesome 14
+
 	strip_workspace_numbers no
 
     colors {
-        # <workclass>       <border>   <backg>    <text>
-        focused_workspace 	$blue      $blue      $white
-        active_workspace 	$black     $black     $grey
-        inactive_workspace	$darkblack $darkblack $grey
-        urgent_workspace 	$red       $red       $white
-        background #222222
-    	separator  #444444
-    	statusline $darkgrey
+        background $base01
+        separator  $base01
+        statusline $base04
+
+        # State             Border  BG      Text
+        focused_workspace   $base0D $base0D $base05
+        active_workspace    $base03 $base03 $base05
+        inactive_workspace  $base01 $base01 $base05
+        urgent_workspace    $base08 $base08 $base00
+        binding_mode        $base0A $base0A $base00
     }
 }
 
 bar {
-	# status_command i3status
+	# i3bar_command i3bar
+	#status_command i3status
+	#status_command py3status -c ~/.i3/i3status.conf
 	status_command i3status-rs ~/.i3/status-big.toml
 	#status_command bumblebee-status -m getcrypto weather nic sensors cpu memory disk:root disk:home pasink pasource indicator date time uptime -p interval=1 getcrypto.getltc=0 nic.states="^down" memory.format="{used}" nic.format="{ip} {ssid}" traffic.states="^down" brightness.step=7 datetime.locale="C" time.format="%R" date.format="%F" cpu.left-click="terminal -e htop" memory.left-click="terminal -e htop" root.format="/ {left}" home.path=/home home.format="~ {left}" weather.apikey="6632b2a97378ae82a0dfe3966b4ec684" weather.left-click="terminal -hold -e curl wttr.in/Uzhhorod\?nF" weather.right-click="terminal -hold -e curl wttr.in/Uzhhorod\?F" indicator.include="CapsLock" -t gruvbox-powerline
 	# memory.format="{percent:.01f}%"
 
-	output VGA1
-
-        position bottom
-#        position top
+	position bottom
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	tray_output primary
 #	tray_output eDP1
-#	tray_output LVDS1
+
+	output $secondary
 
 	bindsym button4 nop
 	bindsym button5 nop
-	font xft:Ubuntu Nerd Font 12
+
+	# font xft:URWGothic-Book, FontAwesome 11
 	strip_workspace_numbers no
 
     colors {
-        # <workclass>       <border>   <backg>    <text>
-        focused_workspace 	$blue      $blue      $white
-        active_workspace 	$black     $black     $grey
-        inactive_workspace	$darkblack $darkblack $grey
-        urgent_workspace 	$red       $red       $white
-        background #222222
-    	separator  #444444
-    	statusline $darkgrey
+        background $base01
+        separator  $base01
+        statusline $base04
+
+        # State             Border  BG      Text
+        focused_workspace   $base0D $base0D $base05
+        active_workspace    $base03 $base03 $base05
+        inactive_workspace  $base01 $base01 $base05
+        urgent_workspace    $base08 $base08 $base00
+        binding_mode        $base0A $base0A $base00
     }
 }
 
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
+# Theme colors
+# Basic color configuration using the Base16 variables for windows and borders.
+# Property Name         Border  BG      Text    Indicator Child Border
+client.focused          $base0D $base0D $base05 $base0D $base0D
+client.focused_inactive $base01 $base01 $base05 $base03 $base01
+client.unfocused        $base01 $base00 $base05 $base01 $base01
+client.urgent           $base08 $base08 $base00 $base08 $base08
+client.placeholder      $base00 $base00 $base05 $base00 $base00
+client.background       $base07
 
 #############################
 ### settings for i3-gaps: ###

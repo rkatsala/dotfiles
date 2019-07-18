@@ -8,7 +8,9 @@ alias nsvt='supervisor --ignore public,node_modules --no-restart-on error --debu
 #alias wttr='curl wttr.in/uzhhorod'
 # dotfiles config repository
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias cfg='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias conftig='GIT_DIR=$HOME/.dotfiles tig'
+alias gfc='GIT_DIR=$HOME/.dotfiles tig'
 # mc
 alias mcc='LANG=C mc'
 alias rr='ranger'
@@ -17,8 +19,13 @@ alias rr='ranger'
 #alias wttr='curl -H "Accept-Language: uk" wttr.in/Ужгород'
 alias wttru='curl -H "Accept-Language: ru" wttr.in/Ужгород'
 
-wttr()
-{
+wttr() {
     # change Paris to your default location
     curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Ужгород}"
 }
+
+keycodes() {
+  xev | grep -A2 --line-buffered '^KeyRelease' \
+    | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'
+}
+

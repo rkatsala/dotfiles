@@ -97,11 +97,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -131,11 +131,47 @@ alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --s
 source $HOME/.aliases
 source $HOME/.aliases.secure
 
+export PATH=$PATH:/home/roma/.local/bin
+
+eval $(thefuck --alias)
+
+# Node Version Manager config
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH=$PATH:/home/roma/.local/bin
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/roma/Projects/socyti-gdpr/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/roma/Projects/socyti-gdpr/node_modules/tabtab/.completions/serverless.zsh
+
+# cht.sh tab completion
+fpath=(~/.zsh.d/ $fpath)
 
 
-eval $(thefuck --alias)
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/roma/Projects/socyti-gdpr/node_modules/tabtab/.completions/sls.zsh ]] && . /home/roma/Projects/socyti-gdpr/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /home/roma/Projects/socyti-gdpr/node_modules/tabtab/.completions/slss.zsh ]] && . /home/roma/Projects/socyti-gdpr/node_modules/tabtab/.completions/slss.zsh

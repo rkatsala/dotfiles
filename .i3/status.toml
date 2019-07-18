@@ -1,5 +1,26 @@
-theme = "gruvbox-dark"
+#theme = "gruvbox-dark"
 icons = "awesome"
+
+# base16-i3status-rust (https://github.com/mystfox/base16-i3status-rust)
+# Pop by Chris Kempson (http://chriskempson.com)
+
+[theme]
+name = "gruvbox-dark"
+[theme.overrides]
+#separator = "  "
+#separator_fg = "#202020"
+#separator_bg = "#202020"
+idle_bg = "#202020"
+idle_fg = "#d0d0d0"
+info_bg = "#00aabb"
+info_fg = "#161616"
+good_bg = "#37b349"
+good_fg = "#161616"
+warning_bg = "#f8ca12"
+warning_fg = "#161616"
+critical_bg = "#eb008a"
+critical_fg = "#161616"
+# The rest of the theme settings are left at default.
 
 #[[block]]
 #block = "focused_window"
@@ -24,8 +45,18 @@ icons = "awesome"
 #service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
 
 [[block]]
+block = "music"
+#player = "mpd"
+max_width = 21
+#marquee = true
+marquee_interval = 5
+marquee_speed = 0.25
+#buttons = ["prev", "play", "next"]
+buttons = ["play"]
+
+[[block]]
 block = "net"
-device = "wlp3s0"
+device = "wlp61s0"
 ssid = true
 bitrate = false
 ip = true
@@ -73,8 +104,8 @@ format_swap = "{SUg}GiB"
 
 [[block]]
 block = "backlight"
-#device = "intel_backlight"
-device = "acpi_video0"
+device = "intel_backlight"
+#device = "acpi_video0"
 
 #[[block]]
 #block = "xrandr"
@@ -101,12 +132,12 @@ interval = 5
 format = "%d %b %R"
 on_click = "terminal -e sncli"
 
-[[block]]
-block = "maildir"
-interval = 5
-inboxes = ["/home/roma/.mail/rkatsala/INBOX", "/home/roma/.mail/namtab2k/INBOX", "/home/roma/.mail/petterson/INBOX", "/home/roma/.mail/crunch/INBOX"]
-threshold_warning = 1
-threshold_critical = 10
+#[[block]]
+#block = "maildir"
+#interval = 5
+#inboxes = ["/home/roma/.mail/rkatsala/INBOX", "/home/roma/.mail/namtab2k/INBOX", "/home/roma/.mail/petterson/INBOX", "/home/roma/.mail/crunch/INBOX"]
+#threshold_warning = 1
+#threshold_critical = 10
 
 #[[block]]
 #block = "custom"
