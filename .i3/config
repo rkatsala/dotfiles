@@ -160,15 +160,16 @@ bindsym Mod1+Mod4+c exec --no-startup-id code
 # Start Favorites Apps
 # bindsym $mod+F12 mode "$mode_favorites"
 bindsym XF86Favorites mode "$mode_favorites"
-set $mode_favorites Run (w)eb browser, (s)kype, (e)mail, (c)ode, (t)mux, (a)ll
+set $mode_favorites Run (w)eb browser, (s)kype, s(l)ack, (e)mail, (c)ode, (t)mux, (a)ll
 mode "$mode_favorites" {
     bindsym w exec --no-startup-id chromium, mode "default"
     bindsym s exec --no-startup-id skypeforlinux, mode "default"
+    bindsym l exec --no-startup-id slack, mode "default"
     bindsym e exec --no-startup-id evolution, mode "default"
     bindsym c exec --no-startup-id code, mode "default"
     # bindsym t exec --no-startup-id terminal -e zsh -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME", mode "default"
     bindsym t exec --no-startup-id terminal -e zsh -c "tmux", mode "default"
-    bindsym a exec --no-startup-id "chromium & skypeforlinux & evolution & code & terminal -e zsh -c tmux", mode "default"
+    bindsym a exec --no-startup-id "chromium & skypeforlinux & slack & evolution & code & terminal -e zsh -c tmux", mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"

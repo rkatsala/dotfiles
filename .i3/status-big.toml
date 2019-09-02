@@ -23,12 +23,6 @@ critical_fg = "#161616"
 # The rest of the theme settings are left at default.
 
 #[[block]]
-#block = "weather"
-##format = "{weather} ({location}) {temp}°"
-#format = "{weather} {temp}°"
-#service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
-
-#[[block]]
 #block = "custom"
 #command = "mocp -Q '%title [%state]'"
 #on_click = "mocp -G"
@@ -48,6 +42,12 @@ interval = 1
 #marquee_interval = 2
 #marquee_speed = 0.25
 #buttons = ["prev", "play", "next"]
+
+#[[block]]
+#block = "weather"
+##format = "{weather} ({location}) {temp}°"
+#format = "{weather} {temp}°"
+#service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
 
 [[block]]
 block = "net"
@@ -71,6 +71,7 @@ good = 20
 idle = 50
 info = 65
 warning = 80 # critical 100
+chip = "coretemp-isa-0000"
 
 [[block]]
 block = "cpu"
