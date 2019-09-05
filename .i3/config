@@ -366,6 +366,7 @@ for_window [class="xpad"] floating enable bordeder pixel 1
 for_window [class="Safeeyes"] floating enable bordeder pixel 1
 for_window [class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"] floating enable bordeder pixel 1
 for_window [class="Evolution-alarm-notify"] floating enable bordeder pixel 1
+for_window [class="Chromium" window_role="pop-up"] floating enable bordeder pixel 1
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
