@@ -79,7 +79,8 @@ Xcursor.theme: xcursor-breeze
 Xcursor.size:                     16
 
 ! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
-URxvt.font:                       xft:Hack Nerd Font Mono:size=12:antialias=true
+!URxvt.font:                       xft:Hack Nerd Font Mono:size=12:antialias=true
+URxvt.font:                       xft:DejaVuSansMono Nerd Font:size=12:antialias=true
 
 
 ! alternative font settings with 'terminus':
