@@ -100,9 +100,10 @@ bindsym Ctrl+XF86AudioMute  exec --no-startup-id "pkill pulseeffects; exec pulse
 # bindsym $mod+Next exec mocp --next # XF86AudioNext
 
 # MPD Player Control
-bindsym $mod+Delete exec $terminal -e 'ncmpc'
+bindsym $mod+Ctrl+Delete exec $terminal -e 'ncmpc'
 bindsym $mod+Shift+Delete exec cantata
 bindsym $mod+Insert exec mpc toggle # XF86AudioPlay
+bindsym $mod+Delete exec mpc stop # XF86AudioStop
 bindsym $mod+Home exec mpc prev # XF86AudioPrev
 bindsym $mod+End exec mpc next # XF86AudioNext
 #bindsym $mod+Home exec mpc play
@@ -112,9 +113,11 @@ bindsym $mod+End exec mpc next # XF86AudioNext
 
 # MPD Player Control (another host) 
 set $mpd_host 192.168.1.249
-bindsym $mod+Ctrl+Delete exec $terminal -e 'ncmpcpp --host=192.168.1.249'
+bindsym Mod1+Mod4+Delete exec $terminal -e 'ncmpcpp --host=192.168.1.249'
 bindsym $mod+Ctrl+XF86AudioRaiseVolume exec mpc --host=$mpd_host volume +5
 bindsym $mod+Ctrl+XF86AudioLowerVolume exec mpc --host=$mpd_host volume -5
+bindsym $mod+Ctrl+Shift+XF86AudioRaiseVolume exec mpc --host=$mpd_host volume +1
+bindsym $mod+Ctrl+Shift+XF86AudioLowerVolume exec mpc --host=$mpd_host volume -1
 bindsym $mod+Ctrl+XF86AudioMute exec mpc --host=$mpd_host volume 0
 bindsym $mod+Ctrl+Insert exec mpc --host=$mpd_host toggle # XF86AudioPlay
 bindsym $mod+Ctrl+Home exec mpc --host=$mpd_host prev # XF86AudioPrev
@@ -160,16 +163,17 @@ bindsym Mod1+Mod4+c exec --no-startup-id code
 # Start Favorites Apps
 # bindsym $mod+F12 mode "$mode_favorites"
 bindsym XF86Favorites mode "$mode_favorites"
-set $mode_favorites Run (w)eb browser, (s)kype, s(l)ack, (e)mail, (c)ode, (t)mux, (a)ll
+set $mode_favorites Run (w)eb browser, c(h)rome, (s)kype, s(l)ack, (e)mail, (c)ode, (t)mux, (a)ll main
 mode "$mode_favorites" {
     bindsym w exec --no-startup-id chromium, mode "default"
+    bindsym h exec --no-startup-id google-chrome-stable, mode "default"
     bindsym s exec --no-startup-id skypeforlinux, mode "default"
     bindsym l exec --no-startup-id slack, mode "default"
     bindsym e exec --no-startup-id evolution, mode "default"
     bindsym c exec --no-startup-id code, mode "default"
     # bindsym t exec --no-startup-id terminal -e zsh -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME", mode "default"
     bindsym t exec --no-startup-id terminal -e zsh -c "tmux", mode "default"
-    bindsym a exec --no-startup-id "chromium & skypeforlinux & slack & evolution & code & terminal -e zsh -c tmux", mode "default"
+    bindsym a exec --no-startup-id "chromium & skypeforlinux & evolution & code & terminal -e zsh -c tmux", mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -229,7 +233,8 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+#bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+Return floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -367,6 +372,7 @@ for_window [class="Safeeyes"] floating enable bordeder pixel 1
 for_window [class="crx_nkbihfbeogaeaoehlefnkodbefgpgknn"] floating enable bordeder pixel 1
 for_window [class="Evolution-alarm-notify"] floating enable bordeder pixel 1
 for_window [class="Chromium" window_role="pop-up"] floating enable bordeder pixel 1
+for_window [class="Nm-connection-editor"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus

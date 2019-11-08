@@ -7,6 +7,7 @@ Xft.lcdfilter: lcddefault
 ! Base16 Pop (modified base00)
 ! Scheme: Chris Kempson (http://chriskempson.com)
 
+#define base000 #000000
 #define base00 #161616
 #define base01 #202020
 #define base02 #303030
@@ -48,7 +49,7 @@ XTerm*selectToClipboard: true
 #endif
 *.cursorColor:  base05
 
-*.color0:       base00
+*.color0:       base000
 *.color1:       base08
 *.color2:       base0B
 *.color3:       base0A

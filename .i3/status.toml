@@ -39,10 +39,10 @@ critical_fg = "#161616"
 #bytes = true
 #interval = 1800
 
-#[[block]]
-#block = "weather"
-#format = "{weather} {temp}°" #"{weather} ({location}) {temp}°"
-#service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
+[[block]]
+block = "weather"
+format = "{weather} {temp}°" #"{weather} ({location}) {temp}°"
+service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
 
 [[block]]
 block = "music"
@@ -58,13 +58,26 @@ buttons = ["play"]
 block = "net"
 device = "wlp61s0"
 ssid = true
+signal_strength = false
 bitrate = false
-ip = true
+ip = false
 speed_up = false
 speed_down = false
 graph_up = false
 graph_down = false
 interval = 1
+
+#[[block]]          
+#block = "temperature"
+#collapsed = false  
+#interval = 5       
+##format = "{min}° min, {max}° max, {average}° avg"
+#format = "{average}°"
+#good = 20             
+#idle = 50             
+#info = 65              
+#warning = 80 # critical 100
+#chip = "coretemp-isa-0000"                           
 
 [[block]]
 block = "cpu"
