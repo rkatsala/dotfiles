@@ -1,0 +1,69 @@
+conky.config = {
+	alignment = 'top_right',
+	background = true,
+	color2 = '00aabb',
+	cpu_avg_samples = 2,
+	default_color = 'b0b0b0',
+	double_buffer = true,
+	font = 'Bitstream Vera Sans:size=11',
+	gap_x = 25,
+	gap_y = 13,
+	minimum_width = 250,
+	no_buffers = true,
+	own_window = true,
+	own_window_type = 'override',
+	own_window_transparent = true,
+	update_interval = 1.0,
+	use_xft = true,
+}
+conky.text = [[
+${voffset 8}$color2${font Bitstream Vera Sans:size=18}${time %A}$font\
+${voffset -8}$alignr$color${font Bitstream Vera Sans:size=40}${time %e}$font
+$color${voffset -30}$color${font Bitstream Vera Sans:size=20}${time %b}$font\
+${voffset -3} $color${font Bitstream Vera Sans:size=22}${time %Y}$font$color2$hr
+#
+${voffset 20}${goto 40}${color}CPU${font Bitstream Vera Sans:bold:size=11}$alignr$cpu%  ${freq_g}GHz
+${voffset 5}${goto 40}${color}${font Bitstream Vera Sans:size=11}Fan/Temp${font Bitstream Vera Sans:bold:size=11}$alignr${ibm_fan}RPM  ${ibm_temps 0}°C
+${voffset 5}${goto 40}${color}${font Bitstream Vera Sans:size=11}Load avg.${font Bitstream Vera Sans:bold:size=11}$alignr${loadavg}
+${goto 40}${cpugraph}
+${goto 40}$font$color2${top name 1}$alignr$color${top cpu 1}%
+${goto 40}$color2${top name 2}$alignr$color${top cpu 2}%
+${goto 40}$color2${top name 3}$alignr$color${top cpu 3}%
+${goto 40}$color2${top name 4}$alignr$color${top cpu 4}%
+${goto 40}$color2${top name 5}$alignr$color${top cpu 5}%
+#
+${voffset 10}${goto 40}${color}RAM${font Bitstream Vera Sans:bold:size=11}$alignr${mem}/ $memfree$font
+${goto 40}${memgraph}
+${goto 40}$color2${top_mem name 1}$alignr$color${top_mem mem_res 1}
+${goto 40}$color2${top_mem name 2}$alignr$color${top_mem mem_res 2}
+${goto 40}$color2${top_mem name 3}$alignr$color${top_mem mem_res 3}
+${goto 40}$color2${top_mem name 4}$alignr$color${top_mem mem_res 4}
+${goto 40}$color2${top_mem name 5}$alignr$color${top_mem mem_res 5}
+#${goto 40}$color2${top_mem name 6}$alignr$color${top_mem mem_res 6}
+#${goto 40}$color2${top_mem name 7}$alignr$color${top_mem mem_res 7}
+#${goto 40}$color2${top_mem name 8}$alignr$color${top_mem mem_res 8}
+#${goto 40}$color2${top_mem name 9}$alignr$color${top_mem mem_res 9}
+#
+${voffset 10}${goto 40}${color}Swap${font Bitstream Vera Sans:bold:size=11}$alignr${swap}/ ${swapfree}
+${goto 40}${swapbar /}
+#
+${voffset 10}${goto 40}${color}${font}Root${font Bitstream Vera Sans:bold:size=11}$alignr${fs_used /}/ ${fs_free /}
+${goto 40}${fs_bar /}
+${voffset 5}${goto 40}${color}${font}Home${font Bitstream Vera Sans:bold:size=11}$alignr${fs_used /home}/ ${fs_free /home}
+${goto 40}${fs_bar /home}
+${voffset 5}${goto 40}${color}${font}Win${font Bitstream Vera Sans:bold:size=11}$alignr${fs_used /mnt/win}/ ${fs_free /mnt/win}
+${goto 40}${fs_bar /mnt/win}
+${voffset 5}${goto 40}${color}${font}Disk IO${font Bitstream Vera Sans:bold:size=11}$alignr${diskio_read}/ ${diskio_write}
+${goto 40}${diskiograph}
+${voffset 5}${goto 40}${color}${font}Wi-Fi${font Bitstream Vera Sans:bold:size=11}$alignr${wireless_essid wlp61s0}
+${goto 40}${wireless_link_bar wlp61s0}
+${voffset 5}${goto 40}${color}${font}Down.${font Bitstream Vera Sans:bold:size=11}$alignr${downspeed wlp61s0}/ ${totaldown wlp61s0}
+${goto 40}${downspeedgraph wlp61s0}
+${voffset 0}${goto 40}${color}${font}Up.${font Bitstream Vera Sans:bold:size=11}$alignr${upspeed wlp61s0}/ ${totalup wlp61s0}
+${goto 40}${upspeedgraph wlp61s0}
+${voffset 15}$font$alignr${execi 10000 awk -F= '/TION/ {print $2}' /etc/lsb-release |sed 's/"//g'} \
+${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
+${voffset 10}${color2}${alignr}${execi 1200 whoami}@${nodename}
+${alignr}${color2}${font Bitstream Vera Sans:size=11}uptime: ${color}${uptime_short}
+${voffset 5}${color2}${font Bitstream Vera Sans:size=11}${alignr}kernel: ${color}${kernel}
+]]
