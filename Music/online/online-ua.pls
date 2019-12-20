@@ -1,0 +1,12 @@
+[playlist]
+NumberOfEntries=10
+File1=http://195.234.148.51:8000/
+File2=http://cast.loungefm.com.ua/chillout128
+File3=http://cast.loungefm.com.ua:8000/loungefm
+File4=http://cast.loungefm.com.ua/acoustic128
+File5=http://cast.loungefm.com.ua/terrace128
+File6=http://online-kissfm.tavrmedia.ua/KissFM
+File7=http://online-kissfm.tavrmedia.ua/KissFM_HD
+File8=http://online-kissfm2.tavrmedia.ua/KissFM_Ukr_HD
+File9=http://online-kissfm2.tavrmedia.ua/KissFM_Deep
+File10=http://online-kissfm2.tavrmedia.ua/KissFM_Digital_HD
