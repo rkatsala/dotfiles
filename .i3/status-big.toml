@@ -31,8 +31,9 @@ critical_fg = "#161616"
 [[block]]
 block = "custom"
 #command = "mpc status | sed '/^volume:/d' | tac | sed 's/ #.*//' | tr '\n' ' '"
-command = "mpc | sed '/^volume:/d' | head -1"
+command = "mpc | sed '/^volume:/d' | head -1 < echo"
 #on_click = "mpc toggle"
+#on_click =  "mpc | sed '/^volume:/d' | head -1 | notify-send"
 interval = 1
 
 #[[block]]

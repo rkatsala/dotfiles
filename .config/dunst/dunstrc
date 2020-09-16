@@ -1,5 +1,5 @@
 [global]
-    font = Cantarell 10
+    font = Cantarell 12
 
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -47,7 +47,7 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = no
+    word_wrap = yes
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no

@@ -35,7 +35,7 @@ XTerm*selectToClipboard: true
 
 *background:                      base00
 *foreground:                      base05
-*fading:                          8
+!*fading:                          8
 *fadeColor:                       black
 *cursorColor:                     base0C
 *pointerColorBackground:          #2B2C2B
@@ -80,8 +80,8 @@ Xcursor.theme: xcursor-breeze
 Xcursor.size:                     16
 
 ! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
-!URxvt.font:                       xft:Hack Nerd Font Mono:size=12:antialias=true
-URxvt.font:                       xft:DejaVuSansMono Nerd Font:size=12:antialias=true
+URxvt.font:                       xft:Hack Nerd Font Mono:size=12:antialias=true, xft:DejaVu Sans:pixelsize=12
+!URxvt.font:                       xft:DejaVuSansMono Nerd Font Mono:size=12:antialias=true
 
 
 ! alternative font settings with 'terminus':
@@ -90,7 +90,7 @@ URxvt.font:                       xft:DejaVuSansMono Nerd Font:size=12:antialias
 !! terminus names see end of file!
 
 URxvt.depth:                      32
-URxvt.background:                 [90]base00
+URxvt.background:                 [100]base00
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
@@ -214,7 +214,7 @@ URxvt.resize-font.step: 1
 ! URxvt*internalBorder:             number
 ! URxvt*borderLess:                 true
 ! URxvt*lineSpace:                  number
-! URxvt*letterSpace:                number
+! URxvt*letterSpace:                0
 ! URxvt*skipBuiltinGlyphs:          boolean
 ! URxvt*pointerBlankDelay:          number
 ! URxvt*backspacekey:               string

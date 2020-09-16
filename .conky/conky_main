@@ -23,7 +23,7 @@ $color${voffset -30}$color${font Bitstream Vera Sans:size=20}${time %b}$font\
 ${voffset -3} $color${font Bitstream Vera Sans:size=22}${time %Y}$font$color2$hr
 #
 ${voffset 20}${goto 40}${color}CPU${font Bitstream Vera Sans:bold:size=11}$alignr$cpu%  ${freq_g}GHz
-${voffset 5}${goto 40}${color}${font Bitstream Vera Sans:size=11}Fan/Temp${font Bitstream Vera Sans:bold:size=11}$alignr${ibm_fan}RPM  ${acpitemp}°C
+${voffset 5}${goto 40}${color}${font Bitstream Vera Sans:size=11}Fan/Temp${font Bitstream Vera Sans:bold:size=11}$alignr${ibm_fan}RPM/ ${acpitemp}°C
 #  ${ibm_temps 0}°C
 ${voffset 5}${goto 40}${color}${font Bitstream Vera Sans:size=11}Load avg.${font Bitstream Vera Sans:bold:size=11}$alignr${loadavg}
 ${goto 40}${cpugraph}

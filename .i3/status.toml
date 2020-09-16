@@ -1,5 +1,14 @@
 #theme = "gruvbox-dark"
-icons = "awesome"
+#icons = "awesome"
+
+[icons]
+name = "awesome"
+[icons.overrides]
+backlight_empty = " 🌑 "
+backlight_partial1 = " 🌘 "
+backlight_partial2 = " 🌗 "
+backlight_partial3 = " 🌖 "
+backlight_full = " 🌕 "
 
 # base16-i3status-rust (https://github.com/mystfox/base16-i3status-rust)
 # Pop by Chris Kempson (http://chriskempson.com)
