@@ -15,6 +15,7 @@ alias gfc='GIT_DIR=$HOME/.dotfiles tig'
 alias mcc='LANG=C mc'
 alias rr='ranger'
 #alias mocp='padsp mocp'
+alias star-wars='telnet towel.blinkenlights.nl'
 
 #alias wttr='curl -H "Accept-Language: uk" wttr.in/Ужгород'
 alias wttru='curl -H "Accept-Language: ru" wttr.in/Ужгород'

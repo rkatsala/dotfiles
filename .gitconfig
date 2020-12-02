@@ -25,3 +25,5 @@
 [core]
 	autocrlf = input
 	safecrlf = true
+[pull]
+	ff = only

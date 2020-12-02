@@ -80,7 +80,7 @@ Xcursor.theme: xcursor-breeze
 Xcursor.size:                     16
 
 ! URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
-URxvt.font:                       xft:Hack Nerd Font Mono:size=12:antialias=true, xft:DejaVu Sans:pixelsize=12
+URxvt.font:                       xft:Hack Nerd Font Mono:size=12:antialias=true, xft:DejaVu Sans:pixelsize=12:antialias=true
 !URxvt.font:                       xft:DejaVuSansMono Nerd Font Mono:size=12:antialias=true
 
 
@@ -98,7 +98,7 @@ URxvt*background:                 black
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
 
-! for 'fake' transparency (without Compton) uncomment the following three lines
+
 ! URxvt*inheritPixmap:            true
 ! URxvt*transparent:              true
 ! URxvt*shading:                  138
@@ -214,7 +214,7 @@ URxvt.resize-font.step: 1
 ! URxvt*internalBorder:             number
 ! URxvt*borderLess:                 true
 ! URxvt*lineSpace:                  number
-! URxvt*letterSpace:                0
+URxvt*letterSpace:                -1
 ! URxvt*skipBuiltinGlyphs:          boolean
 ! URxvt*pointerBlankDelay:          number
 ! URxvt*backspacekey:               string

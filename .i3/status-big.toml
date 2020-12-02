@@ -75,14 +75,14 @@ warning = 80 # critical 100
 chip = "coretemp-isa-0000"
 
 [[block]]
-block = "cpu"
-interval = 1
-frequency = true
-
-[[block]]
 block = "load"
 interval = 1
 format = "{1m} {5m}"
+
+[[block]]
+block = "cpu"
+interval = 1
+frequency = true
 
 [[block]]
 block = "memory"

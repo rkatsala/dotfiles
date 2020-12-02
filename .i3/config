@@ -112,8 +112,8 @@ bindsym $mod+End exec mpc next # XF86AudioNext
 #bindsym $mod+Next exec mpc next # XF86AudioNext
 
 # MPD Player Control (another host) 
-set $mpd_host 192.168.88.250
-bindsym Mod1+Mod4+Delete exec $terminal -e 'ncmpcpp --host=192.168.88.250'
+set $mpd_host 192.168.88.249
+bindsym Mod1+Mod4+Delete exec $terminal -e 'ncmpcpp --host=192.168.88.249'
 bindsym $mod+Ctrl+XF86AudioRaiseVolume exec mpc --host=$mpd_host volume +5
 bindsym $mod+Ctrl+XF86AudioLowerVolume exec mpc --host=$mpd_host volume -5
 bindsym $mod+Ctrl+Shift+XF86AudioRaiseVolume exec mpc --host=$mpd_host volume +1
@@ -159,6 +159,8 @@ bindsym $mod+Shift+e --release exec "pkill evolution; exec notify-send 'pkill ev
 bindsym Mod1+Mod4+s exec --no-startup-id skypeforlinux
 bindsym Mod1+Mod4+w exec --no-startup-id chromium
 bindsym Mod1+Mod4+c exec --no-startup-id code
+
+bindsym $mod+Shift+n exec nitrogen
 
 # Start Favorites Apps
 # bindsym $mod+F12 mode "$mode_favorites"
@@ -267,10 +269,10 @@ bindsym $mod+Ctrl+h workspace prev
 
 # move focused workspace between monitors
 # move workspace to output left|right|down|up|current|primary|<output>
-bindsym Mod1+Mod4+greater move workspace to output right
-bindsym Mod1+Mod4+less move workspace to output left
+bindsym Mod1+Mod4+greater move workspace to output down
+bindsym Mod1+Mod4+less move workspace to output right
 bindsym $mod+Ctrl+greater move workspace to output up
-bindsym $mod+Ctrl+less move workspace to output down
+bindsym $mod+Ctrl+less move workspace to output left
 
 # Workspace names
 # to display names or symbols instead of plain workspace numbers you can use
@@ -278,8 +280,8 @@ bindsym $mod+Ctrl+less move workspace to output down
 #                 set $ws2 2:
 set $ws1 "1 Main"
 set $ws2 "2 Misc"
-set $ws3 "3 Code"
-set $ws4 "4 Web"
+set $ws3 "3 Web"
+set $ws4 "4 Code"
 set $ws5 "5 Misc"
 set $ws6 "6 Misc"
 set $ws7 "7 Misc"
@@ -327,12 +329,12 @@ bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 # assign [class="Thunderbird"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
-assign [class="Google-chrome"] $ws4
-assign [class="Chromium"] $ws4
-assign [class="jetbrains-webstorm"] $ws3
-assign [class="Atom"] $ws3
-assign [class="Code"] $ws3
-#assign [class="Sublime_text"] $ws3
+assign [class="Google-chrome"] $ws3
+assign [class="Chromium"] $ws3
+assign [class="jetbrains-webstorm"] $ws4
+assign [class="Atom"] $ws4
+assign [class="Code"] $ws4
+#assign [class="Sublime_text"] $ws4
 assign [class="Skype"] $ws9
 assign [class="Slack"] $ws9
 assign [class="Franz"] $ws9
@@ -447,18 +449,19 @@ bindsym $mod+Shift+o    resize grow width 10 px or 10 ppt
 bindsym XF86ScreenSaver exec --no-startup-id blurlock
 
 
-
 ## Manual management of external displays
 set $primary eDP1
 set $secondary HDMI2
+set $third_party DP1
 # Set the shortcuts and what they do
 # set $mode_display Ext Screen (v) VGA ABOVE ON, (r) VGA RIGHT ON, (l) VGA LEFT ON, (h) HDMI RIGHT ON, (x) VGA OFF, (y) HDMI OFF
-set $mode_display Ext Screen (a) ABOVE ON, (r) RIGHT ON, (l) LEFT ON, (x) OFF
+set $mode_display Ext Screen (w) WORK ON, (a) ABOVE ON, (r) RIGHT ON, (l) LEFT ON, (x) OFF
 mode "$mode_display" {
-   bindsym a exec --no-startup-id xrandr --output $secondary --auto --above $primary, mode "default"
-   bindsym r exec --no-startup-id xrandr --output $secondary --auto --right-of $primary, mode "default"
-   bindsym l exec --no-startup-id xrandr --output $secondary --auto --left-of $primary, mode "default"
-   bindsym x exec --no-startup-id xrandr --output $secondary --auto --off, mode "default"
+   bindsym w exec --no-startup-id xrandr --output $secondary --auto --above $primary --output $third_party --auto --mode 1920x1080 --left-of $secondary --rotate left && sleep 1 && nitrogen --restore, mode "default"
+   bindsym a exec --no-startup-id xrandr --output $secondary --auto --above $primary && sleep 1 && nitrogen --restore, mode "default"
+   bindsym r exec --no-startup-id xrandr --output $secondary --auto --right-of $primary && sleep 1 && nitrogen --restore, mode "default"
+   bindsym l exec --no-startup-id xrandr --output $secondary --auto --left-of $primary && sleep 1 && nitrogen --restore, mode "default"
+   bindsym x exec --no-startup-id xrandr --output $secondary --auto --off --output $third_party --auto --off && sleep 1 && nitrogen --restore, mode "default"
 #    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1, mode "default"
 #    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
 
@@ -470,19 +473,23 @@ mode "$mode_display" {
 bindsym $mod+x mode "$mode_display"
 bindsym XF86Display mode "$mode_display"
 
-# xrandr default
-#exec --no-startup-id xrandr --output VGA1 --auto --left-of LVDS1
-exec --no-startup-id xrandr --output $secondary --auto --above $primary
-
 # Automatically putting workspaces on specific screens
-workspace $ws1 output $secondary $primary
-workspace $ws2 output $secondary $primary
+workspace $ws1 output $third_party $primary
+workspace $ws2 output $third_party $primary
 workspace $ws3 output $secondary $primary
 workspace $ws4 output $secondary $primary
+workspace $ws5 output $secondary $primary
 workspace $ws7 output $primary
 workspace $ws8 output $primary
 workspace $ws9 output $primary
 workspace $ws10 output $primary
+
+
+# Autostart xrandr default
+#exec --no-startup-id xrandr --output VGA1 --auto --left-of LVDS1
+#exec --no-startup-id xrandr --output $secondary --auto --above $primary
+exec --no-startup-id xrandr --output $secondary --auto --above $primary --output $third_party --auto --mode 1920x1080 --left-of $secondary --rotate left && sleep 1, mode "default"
+
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -495,10 +502,11 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id gxkb
+exec --no-startup-id kdeconnect-indicator
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id LANG=en_US.UTF-8 conky -c ~/.conky/conky_main
-exec --no-startup-id LANG=en_US.UTF-8 conky -c ~/.conky/conky_rss
+##exec --no-startup-id LANG=en_US.UTF-8 conky -c ~/.conky/conky_rss
 exec --no-startup-id xautolock -time 20 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
@@ -624,6 +632,42 @@ bar {
 #	tray_output eDP1
 
 	output $secondary
+
+	bindsym button4 nop
+	bindsym button5 nop
+
+	# font xft:URWGothic-Book, FontAwesome 11
+	strip_workspace_numbers no
+
+    colors {
+        background $base01
+        separator  $base01
+        statusline $base04
+
+        # State             Border  BG      Text
+        focused_workspace   $base0D $base0D $base05
+        active_workspace    $base03 $base03 $base05
+        inactive_workspace  $base01 $base01 $base05
+        urgent_workspace    $base08 $base08 $base00
+        binding_mode        $base0A $base0A $base00
+    }
+}
+
+bar {
+	# i3bar_command i3bar
+	#status_command i3status
+	#status_command py3status -c ~/.i3/i3status.conf
+	status_command i3status-rs ~/.i3/status-small.toml
+	#status_command bumblebee-status -m getcrypto weather nic sensors cpu memory disk:root disk:home pasink pasource indicator date time uptime -p interval=1 getcrypto.getltc=0 nic.states="^down" memory.format="{used}" nic.format="{ip} {ssid}" traffic.states="^down" brightness.step=7 datetime.locale="C" time.format="%R" date.format="%F" cpu.left-click="terminal -e htop" memory.left-click="terminal -e htop" root.format="/ {left}" home.path=/home home.format="~ {left}" weather.apikey="6632b2a97378ae82a0dfe3966b4ec684" weather.left-click="terminal -hold -e curl wttr.in/Uzhhorod\?nF" weather.right-click="terminal -hold -e curl wttr.in/Uzhhorod\?F" indicator.include="CapsLock" -t gruvbox-powerline
+	# memory.format="{percent:.01f}%"
+
+	position bottom
+
+## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+	tray_output primary
+#	tray_output eDP1
+
+	output $third_party
 
 	bindsym button4 nop
 	bindsym button5 nop
