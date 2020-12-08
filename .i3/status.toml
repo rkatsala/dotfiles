@@ -59,12 +59,13 @@ block = "music"
 max_width = 15 # 21
 #dynamic_width = true
 marquee = true
-marquee_interval = 5
+marquee_interval = 2
 marquee_speed = 0.25
 #smart_trim = true
 #separator = " < "
 #buttons = ["prev", "play", "next"]
 buttons = ["play"]
+#hide_when_empty = true
 
 [[block]]
 block = "net"

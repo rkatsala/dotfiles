@@ -60,12 +60,15 @@ ${voffset 5}${goto 40}${color}${font}Win${font Bitstream Vera Sans:bold:size=11}
 ${goto 40}${fs_bar /mnt/win}
 ${voffset 5}${goto 40}${color}${font}Disk IO${font Bitstream Vera Sans:bold:size=11}$alignr${diskio_read}/ ${diskio_write}
 ${goto 40}${diskiograph}
+# Wi-Fi
 ${voffset 5}${goto 40}${color}${font}Wi-Fi${font Bitstream Vera Sans:bold:size=11}$alignr${wireless_essid wlp61s0}
 ${goto 40}${wireless_link_bar wlp61s0}
-${voffset 5}${goto 40}${color}${font}Down.${font Bitstream Vera Sans:bold:size=11}$alignr${downspeed wlp61s0}/ ${totaldown wlp61s0}
-${goto 40}${downspeedgraph wlp61s0}
-${voffset 0}${goto 40}${color}${font}Up.${font Bitstream Vera Sans:bold:size=11}$alignr${upspeed wlp61s0}/ ${totalup wlp61s0}
+# Network
+${voffset 5}${goto 40}${color}${font}Up.${font Bitstream Vera Sans:bold:size=11}$alignr${upspeed wlp61s0}/ ${totalup wlp61s0}
 ${goto 40}${upspeedgraph wlp61s0}
+${voffset 0}${goto 40}${color}${font}Down.${font Bitstream Vera Sans:bold:size=11}$alignr${downspeed wlp61s0}/ ${totaldown wlp61s0}
+${goto 40}${downspeedgraph wlp61s0}
+#
 ${voffset 15}$font$alignr${execi 10000 awk -F= '/TION/ {print $2}' /etc/lsb-release |sed 's/"//g'} \
 ${execi 10000 awk -F= '/EASE=/ {printf $2" "} /NAME/ {print $2}' /etc/lsb-release}
 ${voffset 10}${color2}${alignr}${execi 1200 whoami}@${nodename}
