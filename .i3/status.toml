@@ -65,7 +65,7 @@ marquee_speed = 0.25
 #separator = " < "
 #buttons = ["prev", "play", "next"]
 buttons = ["play"]
-#hide_when_empty = true
+hide_when_empty = true
 
 [[block]]
 block = "net"
