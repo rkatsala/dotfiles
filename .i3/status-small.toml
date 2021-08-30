@@ -22,19 +22,20 @@ critical_bg = "#eb008a"
 critical_fg = "#161616"
 # The rest of the theme settings are left at default.
 
+[[block]]
+block = "custom"
+#command = "mpc status | sed '/^volume:/d' | tac | sed 's/ #.*//' | tr '\n' ' '"
+command = "mpc | sed '/^volume:/d' | head -1"
+#command = "mpc | head -1"
+#on_click = "mpc toggle"
+#on_click =  "mpc | sed '/^volume:/d' | head -1 | notify-send"
+interval = 1
+
 #[[block]]
 #block = "custom"
 #command = "mocp -Q '%title [%state]'"
 #on_click = "mocp -G"
 #interval = 1
-
-[[block]]
-block = "custom"
-#command = "mpc status | sed '/^volume:/d' | tac | sed 's/ #.*//' | tr '\n' ' '"
-command = "mpc | sed '/^volume:/d' | head -1"
-#on_click = "mpc toggle"
-#on_click =  "mpc | sed '/^volume:/d' | head -1 | notify-send"
-interval = 1
 
 #[[block]]
 #block = "music"
@@ -53,62 +54,62 @@ interval = 1
 #[[block]]
 #block = "net"
 #device = "wlp61s0"
+#ssid = true
+#bitrate = false
+#ip = true
+#speed_up = false
+#speed_down = false
+#graph_up = false
+#graph_down = false
 #interval = 1
 
-[[block]]
-block = "networkmanager"
-on_click = "alacritty -e nmtui"
-interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
-interface_name_include = []
-
-[[block]]
-block = "temperature"
-collapsed = false
-interval = 5
-#format = "{min}° min, {max}° max, {average}° avg"
-format = "{average}"
-good = 20
-idle = 50
-info = 65
-warning = 80 # critical 100
-chip = "coretemp-isa-0000"
+#[[block]]
+#block = "temperature"
+#collapsed = false
+#interval = 5
+##format = "{min}° min, {max}° max, {average}° avg"
+#format = "{average}°"
+#good = 20
+#idle = 50
+#info = 65
+#warning = 80 # critical 100
+#chip = "coretemp-isa-0000"
 
 [[block]]
 block = "load"
 interval = 1
-format = "{1m} {5m}"
+format = "{1m} {5m} {15m}"
 
 [[block]]
 block = "cpu"
 interval = 1
+#frequency = true
 
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{mem_used;G}"
-format_swap = "{swap_used;G}"
+format_mem = "{mem_used_percents}"
+format_swap = "{swap_used_percents}"
 
-[[block]]
-block = "disk_space"
-path = "/"
-format = "{icon} /{available}"
+#[[block]]
+#block = "disk_space"
+#path = "/"
 #alias = "/"
-info_type = "available"
-unit = "GB"
-interval = 20
-warning = 10.0
-alert = 5.0
+#info_type = "available"
+#unit = "GB"
+#interval = 20
+#warning = 10.0
+#alert = 5.0
 
-[[block]]
-block = "disk_space"
-path = "/home"
-format = "{icon} ~{available}"
+#[[block]]
+#block = "disk_space"
+#path = "/home"
 #alias = "~"
-info_type = "available"
-unit = "GB"
-interval = 20
-warning = 20.0
-alert = 10.0
+#info_type = "available"
+#unit = "GB"
+#interval = 20
+#warning = 20.0
+#alert = 10.0
 
 #[[block]]
 #block = "xrandr"
@@ -124,8 +125,8 @@ step_width = 1
 [[block]]
 block = "time"
 interval = 5
-format = "%a %d/%m %R"
-#format = "%F %R"
+#format = "%a %d/%m %R"
+format = "%F %R"
 
 [[block]]
 block = "uptime"

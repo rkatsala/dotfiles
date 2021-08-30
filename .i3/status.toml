@@ -3,12 +3,12 @@
 
 [icons]
 name = "awesome"
-[icons.overrides]
-backlight_empty = " 🌑 "
-backlight_partial1 = " 🌘 "
-backlight_partial2 = " 🌗 "
-backlight_partial3 = " 🌖 "
-backlight_full = " 🌕 "
+#[icons.overrides]
+#backlight_empty = " 🌑 "
+#backlight_partial1 = " 🌘 "
+#backlight_partial2 = " 🌗 "
+#backlight_partial3 = " 🌖 "
+#backlight_full = " 🌕 "
 
 # base16-i3status-rust (https://github.com/mystfox/base16-i3status-rust)
 # Pop by Chris Kempson (http://chriskempson.com)
@@ -50,7 +50,7 @@ critical_fg = "#161616"
 
 [[block]]
 block = "weather"
-format = "{weather} {temp}°" #"{weather} ({location}) {temp}°"
+format = "{weather} {temp}" #"{weather} ({location}) {temp}°"
 service = { name = "openweathermap", api_key = "6632b2a97378ae82a0dfe3966b4ec684", city_id = "690548", units = "metric" }
 
 [[block]]
@@ -70,15 +70,17 @@ hide_when_empty = true
 [[block]]
 block = "net"
 device = "wlp61s0"
-ssid = true
-signal_strength = false
-bitrate = false
-ip = false
-speed_up = false
-speed_down = false
-graph_up = false
-graph_down = false
+format = "{ssid}"
+format_alt = "{ip} {frequency} {signal_strength}"
 interval = 1
+
+#[[block]]
+#block = "networkmanager"
+#on_click = "alacritty -e nmtui"
+#interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
+#interface_name_include = []
+##ap_format = "{ssid^10}"
+#device_format="{icon} {ap}"
 
 #[[block]]          
 #block = "temperature"
@@ -95,7 +97,6 @@ interval = 1
 [[block]]
 block = "cpu"
 interval = 1
-frequency = false
 
 #[[block]]
 #block = "load"
@@ -105,8 +106,8 @@ frequency = false
 [[block]]
 block = "memory"
 display_type = "memory"
-format_mem = "{Mug}GiB"
-format_swap = "{SUg}GiB"
+format_mem = "{mem_used;G}"
+format_swap = "{swap_used;G}"
 
 #[[block]]
 #block = "disk_space"
@@ -149,7 +150,7 @@ on_click = "pavucontrol"
 block = "battery"
 interval = 10
 #format = "{percentage}% {time}"
-format = "{percentage}%"
+format = "{percentage}"
 
 [[block]]
 block = "time"
