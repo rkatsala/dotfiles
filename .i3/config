@@ -60,6 +60,12 @@ set $greenclip "rofi -matching regex -modi 'clipboard:greenclip print' -show cli
 bindsym $mod+p exec --no-startup-id $greenclip
 bindsym $mod+v exec --no-startup-id $greenclip
 
+# Rofi translate (https://github.com/garyparrot/rofi-translate)
+bindsym $mod+g exec --no-startup-id "rofi_trans -location 2"
+
+# Crow translate
+bindsym $mod+Ctrl+g exec --no-startup-id crow
+
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
@@ -129,7 +135,7 @@ bindsym $mod+Ctrl+End exec mpc --host=$mpd_host next # XF86AudioNext
 
 # Start Applications
 bindsym $mod+Ctrl+b exec $terminal -e 'bmenu'
-bindsym $mod+F2 exec chromium
+bindsym $mod+F2 exec google-chrome-stable
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
@@ -157,7 +163,7 @@ bindsym $mod+Ctrl+e exec --no-startup-id $terminal -e neomutt
 bindsym Mod1+Mod4+e exec --no-startup-id evolution
 bindsym $mod+Shift+e --release exec "pkill evolution; exec notify-send 'pkill evolution'"
 bindsym Mod1+Mod4+s exec --no-startup-id skypeforlinux
-bindsym Mod1+Mod4+w exec --no-startup-id chromium
+bindsym Mod1+Mod4+w exec --no-startup-id google-chrome-stable
 bindsym Mod1+Mod4+c exec --no-startup-id code
 
 bindsym $mod+Shift+n exec nitrogen
@@ -165,10 +171,11 @@ bindsym $mod+Shift+n exec nitrogen
 # Start Favorites Apps
 # bindsym $mod+F12 mode "$mode_favorites"
 bindsym XF86Favorites mode "$mode_favorites"
-set $mode_favorites Run (w)eb browser, c(h)rome, chrome (u)nstable, (s)kype, s(l)ack, (e)mail, (c)ode, (t)mux, (a)ll
+set $mode_favorites Run (w)eb browser, c(h)romium, chrome (u)nstable, (s)kype, s(l)ack, (e)mail, (c)ode, (t)mux, (g)translate, (a)ll
 mode "$mode_favorites" {
-    bindsym w exec --no-startup-id chromium, mode "default"
-    bindsym h exec --no-startup-id google-chrome-stable, mode "default"
+    bindsym w exec --no-startup-id google-chrome-stable, mode "default"
+    bindsym h exec --no-startup-id chromium, mode "default"
+    #bindsym u exec --no-startup-id google-chrome-unstable --force-device-scale-factor=1.75, mode "default"
     bindsym u exec --no-startup-id google-chrome-unstable, mode "default"
     bindsym s exec --no-startup-id skypeforlinux, mode "default"
     bindsym l exec --no-startup-id slack, mode "default"
@@ -176,7 +183,8 @@ mode "$mode_favorites" {
     bindsym c exec --no-startup-id code, mode "default"
     # bindsym t exec --no-startup-id terminal -e zsh -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME", mode "default"
     bindsym t exec --no-startup-id urxvt -e zsh -c "/bin/tmux at", mode "default"
-    bindsym a exec --no-startup-id "chromium & skypeforlinux & slack & evolution & code & urxvt -e zsh -c '/bin/tmux at'", mode "default"
+    bindsym g exec --no-startup-id crow, mode "default"
+    bindsym a exec --no-startup-id "google-chrome-stable & skypeforlinux & slack & evolution & code & urxvt -e zsh -c '/bin/tmux at'", mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -455,14 +463,19 @@ set $secondary HDMI2
 set $third_party DP1
 # Set the shortcuts and what they do
 # set $mode_display Ext Screen (v) VGA ABOVE ON, (r) VGA RIGHT ON, (l) VGA LEFT ON, (h) HDMI RIGHT ON, (x) VGA OFF, (y) HDMI OFF
-set $mode_display Ext Screen (w) WORK ON, (a) ABOVE ON, (r) RIGHT ON, (l) LEFT ON, (x) OFF
+set $mode_display Ext Screen (w) WORK ON, (h) HOME ON, (u) HOME ALT ON, (y) HOME ALT 2 ON, (a) ABOVE ON, (r) RIGHT ON, (l) LEFT ON, (x) OFF, (z) OFF ALT, (c) OFF ALT 
 mode "$mode_display" {
    bindsym w exec --no-startup-id xrandr --output $secondary --auto --above $primary --output $third_party --auto --mode 1920x1080 --left-of $secondary --rotate left && sleep 1 && nitrogen --restore, mode "default"
+   bindsym h exec --no-startup-id xrandr --output $primary --primary --mode 1920x1080 --rotate normal --output $third_party --rotate normal --mode 2560x1440 --above $primary && sleep 1 && nitrogen --restore, mode "default"
+   bindsym u exec --no-startup-id xrandr --output $primary --primary --mode 1920x1080 --fb 3840x3780 --rotate normal --scale 1.5x1.5 --panning 2880x1620+0+2160 --output $third_party --rotate normal --mode 3840x2160 --above $primary --fb 3840x3780 --scale 1x1 --panning 3840x2160+0+0 && sleep 1 && nitrogen --restore, mode "default"
+   bindsym y exec --no-startup-id xrandr --output $primary --primary --mode 1920x1080 --fb 3840x4050 --rotate normal --scale 1.75x1.75 --panning 3360x1890+0+2160 --output $third_party --rotate normal --mode 3840x2160 --above $primary --fb 3840x4050 --scale 1x1 --panning 3840x2160+0+0 && sleep 1 && nitrogen --restore, mode "default"
    bindsym a exec --no-startup-id xrandr --output $secondary --auto --above $primary && sleep 1 && nitrogen --restore, mode "default"
    bindsym r exec --no-startup-id xrandr --output $secondary --auto --right-of $primary && sleep 1 && nitrogen --restore, mode "default"
    bindsym l exec --no-startup-id xrandr --output $secondary --auto --left-of $primary && sleep 1 && nitrogen --restore, mode "default"
-   bindsym x exec --no-startup-id xrandr --output $secondary --auto --off --output $third_party --auto --off && sleep 1 && nitrogen --restore, mode "default"
-#    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1, mode "default"
+   bindsym x exec --no-startup-id xrandr --output $primary --primary --mode 1920x1080 --fb 1920x1080 --scale 1x1 --rotate normal --output $secondary --off --output $third_party --off && sleep 1 &&  nitrogen --restore, mode "default"
+   bindsym z exec --no-startup-id xrandr --output $primary --primary --mode 1920x1080 --fb 2880x1620 --rotate normal --scale 1.5x1.5 --panning 2880x1620+0+0 --output $secondary --off --output $third_party --off && sleep 1 && nitrogen --restore, mode "default"
+   bindsym c exec --no-startup-id xrandr --output $primary --primary --mode 1920x1080 --fb 3360x1890 --rotate normal --scale 1.75x1.75 --panning 3360x1890+0+0 --output $secondary --off --output $third_party --off && sleep 1 && nitrogen --restore, mode "default"
+#    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of $primary, mode "default"
 #    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
 
    # back to normal: Enter or Escape
@@ -476,8 +489,8 @@ bindsym XF86Display mode "$mode_display"
 # Automatically putting workspaces on specific screens
 workspace $ws1 output $third_party $primary
 workspace $ws2 output $third_party $primary
-workspace $ws3 output $secondary $primary
-workspace $ws4 output $secondary $primary
+workspace $ws3 output $secondary $third_party $primary
+workspace $ws4 output $secondary $third_party $primary
 workspace $ws5 output $secondary $primary
 workspace $ws7 output $primary
 workspace $ws8 output $primary
@@ -488,8 +501,8 @@ workspace $ws10 output $primary
 # Autostart xrandr default
 #exec --no-startup-id xrandr --output VGA1 --auto --left-of LVDS1
 #exec --no-startup-id xrandr --output $secondary --auto --above $primary
-exec --no-startup-id xrandr --output $secondary --auto --above $primary --output $third_party --auto --mode 1920x1080 --left-of $secondary --rotate left && sleep 1, mode "default"
-
+#exec --no-startup-id xrandr --output $secondary --auto --above $primary --output $third_party --auto --mode 1920x1080 --left-of $secondary --rotate left && sleep 1, mode "default"
+#exec --no-startup-id xrandr --dpi 168 --output $primary --primary --mode 1920x1080 --fb 2880x1620 --rotate normal --scale 1.5x1.5 --panning 2880x1620+0+0 --output $secondary --off --output $third_party --off && sleep 1 && nitrogen --restore, mode "default"
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -505,7 +518,7 @@ exec --no-startup-id gxkb
 exec --no-startup-id kdeconnect-indicator
 # exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id LANG=en_US.UTF-8 conky -c ~/.conky/conky_main
+exec --no-startup-id LANG=en_US.UTF-8 LC_TIME=en_US.UTF-8 conky -c ~/.conky/conky_main
 ##exec --no-startup-id LANG=en_US.UTF-8 conky -c ~/.conky/conky_rss
 exec --no-startup-id xautolock -time 20 -locker blurlock
 exec_always --no-startup-id ff-theme-util
@@ -592,14 +605,14 @@ bar {
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	tray_output primary
-#	tray_output eDP1
+#	tray_output $primary
 
 	output $primary
 
 	bindsym button4 nop
 	bindsym button5 nop
 
-	font xft:URWGothic-Book, FontAwesome 14
+	font xft:URWGothic-Book, FontAwesome 15
 
 	strip_workspace_numbers no
 
@@ -629,14 +642,14 @@ bar {
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	tray_output primary
-#	tray_output eDP1
+#	tray_output $primary
 
 	output $secondary
 
 	bindsym button4 nop
 	bindsym button5 nop
 
-	# font xft:URWGothic-Book, FontAwesome 11
+	font xft:URWGothic-Book, FontAwesome 11
 	strip_workspace_numbers no
 
     colors {
@@ -665,14 +678,14 @@ bar {
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 	tray_output primary
-#	tray_output eDP1
+#	tray_output $primary
 
 	output $third_party
 
 	bindsym button4 nop
 	bindsym button5 nop
 
-	# font xft:URWGothic-Book, FontAwesome 11
+	font xft:URWGothic-Book, FontAwesome 13
 	strip_workspace_numbers no
 
     colors {
