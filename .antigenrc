@@ -1,0 +1,56 @@
+# Load oh-my-zsh library.
+antigen use oh-my-zsh
+
+# Load bundles from the default repo (oh-my-zsh).
+antigen bundle command-not-found
+
+antigen bundle archlinux
+antigen bundle aws
+antigen bundle git
+antigen bundle git-flow-avh
+antigen bundle gitignore
+#antigen bundle common-aliases
+antigen bundle copypath
+antigen bundle copyfile
+antigen bundle colored-man-pages
+antigen bundle docker
+antigen bundle docker-compose
+antigen bundle gcloud
+antigen bundle kubectl
+antigen bundle minikube
+#antigen bundle jsontools
+antigen bundle node
+antigen bundle npm
+antigen bundle yarn
+#antigen bundle npx
+#antigen bundle nvm
+#antigen bundle sublime
+antigen bundle systemd
+antigen bundle tig
+antigen bundle tmux
+#antigen bundle vagrant
+antigen bundle vi-mode
+antigen bundle vscode
+antigen bundle web-search
+
+# Load bundles from external repos.
+antigen bundle unixorn/autoupdate-antigen.zshplugin
+#antigen bundle dijitalmunky/nvm-auto
+# zsh-nvm
+#export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+antigen bundle lukechilds/zsh-nvm
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Select theme.
+#antigen theme agnoster
+#antigen theme FDT2k/FDT2K-theme
+#antigen theme denysdovhan/spaceship-prompt
+antigen theme romkatv/powerlevel10k
+
+# Tell Antigen that you're done.
+antigen apply
+
